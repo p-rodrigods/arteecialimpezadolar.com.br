@@ -1,0 +1,122 @@
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center align-items-center mt-3">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Solicitar Orçamento</h3>
+                    <p>Caso queira enviar curriculo, <a href="/recrutamento"  class="link-primary text-decoration-none">clique aqui</a></p>
+                    <form id="form-agendamento">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label fw-bolder">Nome e Sobrenome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="informe seu nome e sobrenome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label fw-bolder">Telefone (Whastapp)</label>
+                            <input type="tel" class="form-control" id="contato" name="contato" placeholder="(99) 99999-9999">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoResidencia" class="form-label fw-bolder">Tipo de Imóvel</label>
+                            <select name="tipoResidencia" id="tipoResidencia" class="form-control">
+                                <option value="">-- Selecione o tipo de imóvel --</option>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Cobertura">Cobertura</option>
+                                <option value="Kitnet">Kitnet</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="servico" class="form-label fw-bolder">Qual serviço deseja?</label>
+                            <select name="servico" id="servico" class="form-control">
+                                <option value="">-- Selecione um dos serviços --</option>
+                                <option value="Diarista">Diarista</option>
+                                <option value="Faxineira">Faxineira</option>
+                                <option value="Passadeira">Passadeira</option>
+                                <option value="Limpeza Diária">Limpeza diária</option>
+                                <option value="Limpeza Comercial">Limpeza comercial</option>
+                                <option value="Limpeza Doméstica">Limpeza doméstica</option>
+                                <option value="Cuidador de Idosos">Cuidador(a) de idosos</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div id="roupasPassarContainer" style="display: none;">
+                                <label for="qtdRoupasPassar" class="form-label fw-bolder">Quantidade de roupas acumuladas para passar (aproximado)</label>
+                                <select name="qtdRoupasPassar" id="qtdRoupasPassar" class="form-control">
+                                    <option value="">-- Selecione a quantidade --</option>
+                                    <option value="4 horas: de 60 a 80 peças.">4 horas: de 60 a 80 peças.</option>
+                                    <option value="6 horas: de 90 a 120 peças">6 horas: de 90 a 120 peças.</option>
+                                    <option value="8 horas: de 120 a 160 peças.">8 horas: de 120 a 160 peças.</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div id="cuidadorIdososContainer" style="display: none;">
+                                <label for="qtdHorasCuidador" class="form-label fw-bolder">Quantidade de horas para cuidador de idosos</label>
+                                <select name="qtdHorasCuidador" id="qtdHorasCuidador" class="form-control">
+                                    <option value="">-- Selecione a quantidade de horas --</option>
+                                    <option value="4 horas">4 horas</option>
+                                    <option value="6 horas">6 horas</option>
+                                    <option value="8 horas">8 horas</option>
+                                    <option value="12 horas">12 horas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div id="comodosContainer" style="display: none;">
+                                <label class="form-label fw-bolder">Quantidade de Cômodos</label>
+                                <div class="row g-2">
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdSala" class="form-label-sm">Salas</label>
+                                        <input type="number" class="form-control" id="qtdSala" name="qtdSala" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdQuarto" class="form-label-sm">Quartos</label>
+                                        <input type="number" class="form-control" id="qtdQuarto" name="qtdQuarto" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdCozinha" class="form-label-sm">Cozinhas</label>
+                                        <input type="number" class="form-control" id="qtdCozinha" name="qtdCozinha" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdBanheiro" class="form-label-sm">Banheiros</label>
+                                        <input type="number" class="form-control" id="qtdBanheiro" name="qtdBanheiro" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdVaranda" class="form-label-sm">Varandas</label>
+                                        <input type="number" class="form-control" id="qtdVaranda" name="qtdVaranda" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdAreaServico" class="form-label-sm">Áreas de Serviço</label>
+                                        <input type="number" class="form-control" id="qtdAreaServico" name="qtdAreaServico" min="0" value="0">
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <label for="qtdGaragem" class="form-label-sm">Garagens</label>
+                                        <input type="number" class="form-control" id="qtdGaragem" name="qtdGaragem" min="0" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="frequencia" class="form-label fw-bolder">Frequência do Serviço</label>
+                            <select name="frequencia" id="frequencia" class="form-control">
+                                <option value="">-- Selecione a frequência --</option>
+                                <option value="Apenas Orçamento">Quero apenas fazer orçamento</option>
+                                <option value="Unica">Única</option>
+                                <option value="Semanal">Semanal</option>
+                                <option value="Quinzenal">Quinzenal</option>
+                                <option value="Personalizado">Personalizado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="maisInformacoes" class="form-label fw-bolder">Mais informações sobre o serviço</label>
+                            <textarea class="form-control" id="maisInformacoes" name="maisInformacoes" rows="4"
+                                placeholder="Informe também se há áreas externas, pets ou alguma necessidade especial."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

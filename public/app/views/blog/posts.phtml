@@ -1,0 +1,25 @@
+
+<div class="post-container">
+    <h1 class="post-title" style="font-size:2.2em;margin-bottom:16px;"><?= $this->view->postSelecionado['titulo']?></h1>
+    <div class="post-meta" style="color:#888;font-size:0.95em;margin-bottom:24px;">
+        <span>Por <?= $this->view->postSelecionado['autor'] ?></span> &bull; 
+        <span>Publicado em <?= date("d/m/Y • H\hi", strtotime($this->view->postSelecionado['created_at'])) ?></span>
+    </div>
+    <div class="post-image text-center" style="margin-bottom:24px;">
+        <img src="/public/<?= $this->view->postSelecionado['imagem'] ?>" alt="Descrição da imagem" style="width:100%;border-radius:6px;">
+    </div>
+    <div class="post-content" style="font-size:1.15em;line-height:1.7;color:#222;">
+        <p>
+           <?= $this->view->postSelecionado['resumo'] ?>
+        </p>
+        <p>
+           <?= $this->view->postSelecionado['conteudo'] ?>
+        </p>
+        <blockquote style="border-left:4px solid #e53935;padding-left:16px;color:#555;margin:24px 0;">
+            "Trecho destacado da matéria para dar ênfase."
+        </blockquote>
+        <p>
+            Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.
+        </p>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+  <div class="container">
+    <div class="row g-3" id="destaques">
+      <div class="col-12 mb-4">
+        <div class="destaque-banner position-relative rounded overflow-hidden shadow-sm" style="background: linear-gradient(90deg, #f5f5f5 60%, #e3e3e3 100%);">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-7 p-4">
+              <span class="badge bg-danger mb-2">Destaque</span>
+              <p>
+                <a href="\blog?post=<?= $this->view->destaque['slug'] ?>" class="display-5 link-primary fw-bolder text-decoration-none"><?= $this->view->destaque['titulo'] ?></a>
+              </p>
+              <p class="mb-3 text-muted">
+                <?= $this->view->destaque['resumo'] ?>
+              </p>
+            </div>
+            <div class="col-md-5">
+              <img src="public/<?= $this->view->destaque['imagem'] ?>" alt="SUV elétrico GM" class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-lg-8">
+        <?php foreach ($this->view->listarTodos['data'] as $indice => $posts) { ?>
+          <div class="post-card mb-2 p-2 border rounded shadow-sm">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 text-center">
+                <!-- <img src="public/<?= $posts['imagem'] ?>" alt="Chevrolet SUV elétrico" class="img-fluid rounded mb-3  mx-auto d-block">-->
+                <img src="https://placehold.co/400x300" alt="Venda de carros elétricos" class="img-fluid">
+              </div>
+              <div class="col-md-8 col-sm-6 pt-3">
+                  <p>
+                    <a href="\blog?post=<?= $posts['slug'] ?>" class="h3 link-primary fw-bolder text-decoration-none">
+                      <?= $posts['titulo'] ?>
+                    </a>
+                  </p>
+                <p><?= $posts['resumo'] ?></p>
+                <!--<a href="\blog?post=<?= $posts['slug'] ?>" class="btn btn-outline-primary btn-sm mt-2">Leia mais</a>-->
+                <p>
+                  <span class="badge bg-success me-2"><?= $posts['categoria'] ?></span>
+                  <span class="text-muted small"><?= date("d/m/Y • H\hi", strtotime($posts['created_at'])) ?></span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        <?php } ?>
+      </div>
+      <!--LATERAL
+      <div class="col-lg-4">
+        <div class="post-card mb-4 p-3 border rounded shadow-sm">
+          <div class="d-flex align-items-center mb-2">
+            <span class="badge bg-success me-2">Mercado</span>
+            <span class="text-muted small">11/06/2024 • 17h15</span>
+          </div>
+          <h5 class="mb-2">Venda de carros elétricos cresce 30% em maio</h5>
+          <img src="https://placehold.co/400x300" alt="Venda de carros elétricos" class="img-fluid rounded mb-2">
+          <p class="mb-1">
+            O setor automotivo registrou aumento significativo nas vendas de veículos elétricos, impulsionado por incentivos fiscais e maior oferta de modelos.
+          </p>
+          <a href="#" class="btn btn-outline-success btn-sm">Leia mais</a>
+        </div>
+      </div>
+      -->
+      <!-- Paginação -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <?php
+          $pagina = isset($this->view->listarTodos['pagina']) ? (int)$this->view->listarTodos['pagina'] : 1;
+          $total_paginas = isset($this->view->listarTodos['paginas']) ? (int)$this->view->listarTodos['paginas'] : 1;
+          $q = isset($this->view->busca) ? $this->view->busca : '';
+          ?>
+          <li class="page-item <?php echo $pagina <= 1 ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?p=<?php echo max(1, $pagina - 1); ?>">Anterior</a>
+          </li>
+
+          <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <li class="page-item <?php echo $i == $pagina ? 'active' : ''; ?>">
+              <a class="page-link" href="?p=<?php echo $i; ?>">
+                <?php echo $i; ?>
+              </a>
+            </li>
+          <?php endfor; ?>
+
+          <li class="page-item <?php echo $pagina >= $total_paginas ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?p=<?php echo min($total_paginas, $pagina + 1); ?>">Próximo</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>

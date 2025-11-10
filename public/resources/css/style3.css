@@ -1,0 +1,190 @@
+html, body{
+    min-height: 100vh;           /* ocupa a tela toda */
+    display: flex;
+    flex-direction: column;  
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+main{
+    flex: 1;
+    padding-top: 10%;
+}
+
+body {
+    /*background: url(../img/capa\(2\).jpg);*/
+    background-attachment: fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav.navbar-transparente, div.offcanvas-transparente {
+    background: #005c99e6;
+}
+
+.offcanvas {
+  z-index: 2000 !important;
+  width: 250px !important;
+}
+
+.offcanvas .nav-link:hover{
+    color: #ccf0a3 !important;
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+
+.logo a {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo a #slogan {
+    font-size: 0.3em;
+    font-weight: bolder;
+}
+
+.btn-menu-destaque {
+    color: gold
+}
+
+.caixa {
+    padding: 20px 0;
+}
+
+.post-container{
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-family: sans-serif;
+}
+
+footer {
+    width: 100%;
+    background: rgb(0, 0, 0);
+    padding: 20px 0 20px 0;
+    bottom: 0;
+}
+
+footer h4 {
+    text-transform: uppercase;
+    color: #919496;
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+
+footer .navbar-nav li {
+    margin: -5px 0;
+}
+
+footer .navbar-nav a {
+    color: white;
+    font-size: 0.8em;
+}
+
+footer .navbar-nav a:hover {
+    color: #9bf0e1;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer .midias-sociais img {
+    /*background-color: white;*/
+    width: 45px;
+    height: 45x;
+    transition: transform 0.3s ease;
+    border-color: #000 solid 1px;
+}
+
+/* CLASSES MOLDAIS*/
+
+.showSuccessModal {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+
+.errorModal {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #cff4fc;
+    color: #055160;
+    padding: 15px;
+    border: 1px solid #b6effb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+
+.recrutamento-sucesso{
+    height: 75%;
+}
+
+
+/* Extra pequeno (celulares em pé, <576px) */
+@media (max-width: 575.98px) {
+  #home{  
+    padding-top: 55%;
+ }
+ #destaques{
+    margin-top: 35%;
+ }
+}
+
+/* Pequeno (celulares grandes, ≥576px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+ #home{  
+    padding-top: 35%;
+ }
+ main{
+    margin-top: 25%;
+ }
+}
+
+/* Médio (tablets, ≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+   #home{  
+    padding-top: 35%;
+ }
+ main{
+    margin-top: 20%;
+ }
+}
+
+/* Grande (notebooks, ≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ #home{  
+    padding-top: 35%;
+ }
+ main{
+    margin-top: 15%;
+ }
+}
+
+/* Extra grande (desktops grandes, ≥1200px) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* estilos aqui */
+}
+
+/* XX-Large (monitores muito grandes, ≥1400px) */
+@media (min-width: 1400px) {
+  /* estilos aqui */
+}

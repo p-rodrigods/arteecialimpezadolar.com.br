@@ -1,0 +1,25 @@
+{
+    "name" : "miniframework/artecialimpezadolar",
+    "description" : "Site da empresa Artecia Limpeza do Lar",
+    "require" : {
+        "php": ">=7.4"
+    },
+
+    "authors": [
+        {
+            "name": "Paulo Rodrigo",
+            "email": "prds.tj@gmail.com",
+            "role": "Developer",
+            "homepage": "https://pr-developer.com"
+        }
+    ],
+
+    "autoload" : {
+        "psr-4" : {
+            "app\\" : "app/",
+            "mf\\" : "vendor/mf/"
+        }
+    }
+    
+  
+}

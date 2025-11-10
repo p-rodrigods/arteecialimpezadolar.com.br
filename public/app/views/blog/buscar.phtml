@@ -1,0 +1,58 @@
+<!-- Resultados de busca -->
+<div class="container my-4">
+    <h2 class="fw-bold mb-4">Resultados da sua busca por <span class="text-danger">"<?= $this->view->busca ?>"</span></h2>
+    <div class="row" id="resultados-busca">
+        <!-- Item-->
+        <?php foreach ($this->view->pesquisa['data'] as $indice => $posts) { ?>
+            <div class="col-md-8 border-bottom pb-3 mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="\blog?p=<?= $posts['slug'] ?>">
+                            <img src="https://picsum.photos/seed/g1a/600/400" class="img-fluid rounded" alt="Imagem da notícia">
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <span class="text-dark small fw-bold d-block mb-1"><?= $posts['categoria'] ?></span>
+                        <h5 class="fw-semibold mb-2">
+                            <a href="\blog?post=<?= $posts['slug'] ?>" class="text-danger text-decoration-none">
+                                <?= $posts['titulo'] ?>
+                            </a>
+                        </h5>
+                        <p class="text-muted mb-2">
+                            <?= $posts['resumo'] ?>
+                        </p>
+                        <small class="text-secondary"><?= date("d/m/Y", strtotime($posts['created_at'])); ?> • Leia em <?= $this->view->tempoLeitura ?> min</small>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <!-- Paginação -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php
+                $pagina = isset($this->view->pesquisa['pagina']) ? (int)$this->view->pesquisa['pagina'] : 1;
+                $total_paginas = isset($this->view->pesquisa['paginas']) ? (int)$this->view->pesquisa['paginas'] : 1;
+                $q = isset($this->view->busca) ? $this->view->busca : '';
+                ?>
+                <li class="page-item <?php echo $pagina <= 1  ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="?s=<?php echo urlencode($q); ?>&p=<?php echo max(1, $pagina - 1); ?>">Anterior</a>
+                </li>
+
+                <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                    <li class="page-item <?php echo $i == $pagina ? 'active' : ''; ?>">
+                        <a class="page-link" href="?s=<?php echo urlencode($q); ?>&p=<?php echo $i; ?>">
+                            <?php echo $i; ?>
+                        </a>
+                    </li>
+                <?php endfor; ?>
+
+                <li class="page-item <?php echo $pagina >= $total_paginas ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="?s=<?php echo urlencode($q); ?>&p=<?php echo min($total_paginas, $pagina + 1); ?>">Próximo</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+</div>

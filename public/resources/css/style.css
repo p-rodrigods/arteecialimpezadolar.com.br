@@ -1,0 +1,319 @@
+html, body{
+    min-height: 100vh;           /* ocupa a tela toda */
+    display: flex;
+    flex-direction: column;  
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+main{
+    flex: 1;
+}
+
+body {
+    background: url(../img/capa\(2\).jpg);
+    background-attachment: fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+nav.navbar-transparente {
+    background: #005c99e6;
+}
+
+.capa {
+    text-align: center;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ccf0a3;
+    text-decoration: underline;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.5)
+}
+
+.logo a {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo a #slogan {
+    font-size: 0.3em;
+    font-weight: bolder;
+}
+
+.btn-menu-destaque {
+    color: gold
+}
+
+.caixa {
+    padding: 20px 0;
+}
+
+#home{  
+    height:  100vh; 
+    padding-top: 25%;
+}
+
+
+#servicos {
+    background: rgb(253, 253, 253);
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.albuns {
+    padding: 10px 0;
+}
+
+.albuns .icons {
+    padding: 5px;
+}
+
+#servicos h2 {
+    color: rgb(0, 92, 153);
+}
+
+#servicos .caixa-selecao {
+    padding: 5px 5px 5px 25px;
+}
+
+#servicos h2 {
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+#servicos h3 {
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+.albuns .icons img {
+    border-radius: 5px;
+    border: 1px solid rgba(245, 248, 37, 0.6);
+}
+
+#recursos {
+    background: rgb(0, 92, 153);
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+#recursos img {
+    border: 1px solid rgba(245, 248, 37, 0.6);
+    border-radius: 5px;
+}
+
+#recursos h2 {
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+#text-banner {
+    text-shadow: #000 2px 2px;
+}
+
+.btn-custom {
+    color: white;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    text-transform: uppercase;
+    transition: background 0.4s, color 0.4s;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.capa {
+    text-align: center;
+    margin-top: -150px;
+}
+
+
+.btn-roxo {
+    background: rgb(245, 248, 37);
+    color: #000;
+}
+
+.btn-roxo:hover {
+    background: rgb(245, 248, 37, 0.9);
+
+}
+
+.btn-branco {
+    background-color: rgb(0, 92, 153);
+    color: #fff;
+}
+
+.btn-branco:hover {
+    background-color: rgba(0, 92, 153, 0.8);
+    color: #fff;
+}
+
+.btn-verde {
+    background-color: green;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.btn-verde:hover {
+    background-color: rgba(4, 177, 4, 0.5);
+    color: #fff;
+}
+
+.btn-amarelo {
+    background-color: yellow;
+    color: #000;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.btn-amarelo:hover {
+    background-color: rgb(245, 248, 37, 0.9);
+    color: #000;
+}
+
+#home h1 {
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: #000 1px 1px;
+}
+
+.link-servicos {
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
+}
+
+.link-servicos:hover {
+    text-decoration: underline;
+}
+
+footer {
+    width: 100%;
+    background: rgb(0, 0, 0);
+    padding: 20px 0 20px 0;
+    bottom: 0;
+}
+
+footer h4 {
+    text-transform: uppercase;
+    color: #919496;
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+
+footer .navbar-nav li {
+    margin: -5px 0;
+}
+
+footer .navbar-nav a {
+    color: white;
+    font-size: 0.8em;
+}
+
+footer .navbar-nav a:hover {
+    color: #9bf0e1;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer .midias-sociais img {
+    /*background-color: white;*/
+    width: 45px;
+    height: 45x;
+    transition: transform 0.3s ease;
+    border-color: #000 solid 1px;
+}
+
+/* CLASSES MOLDAIS*/
+
+.showSuccessModal {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+
+.errorModal {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #cff4fc;
+    color: #055160;
+    padding: 15px;
+    border: 1px solid #b6effb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+
+.recrutamento-sucesso{
+    height: 75%;
+}
+
+
+/* Extra pequeno (celulares em pé, <576px) */
+@media (max-width: 575.98px) {
+  #home{  
+    padding-top: 55%;
+ }
+}
+
+/* Pequeno (celulares grandes, ≥576px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #home{  
+    padding-top: 35%;
+ }
+}
+
+/* Médio (tablets, ≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+   #home{  
+    padding-top: 35%;
+ }
+}
+
+/* Grande (notebooks, ≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+ #home{  
+    padding-top: 35%;
+ }
+
+}
+
+/* Extra grande (desktops grandes, ≥1200px) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  /* estilos aqui */
+}
+
+/* XX-Large (monitores muito grandes, ≥1400px) */
+@media (min-width: 1400px) {
+  /* estilos aqui */
+}
