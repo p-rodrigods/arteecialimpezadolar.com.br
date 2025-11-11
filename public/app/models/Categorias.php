@@ -10,6 +10,8 @@ class Categorias extends Model
     private $nome;
     private $slug;
     private $descricao;
+    private $pagina;
+    private $limite;
 
     public function __get($attr)
     {
@@ -52,6 +54,22 @@ class Categorias extends Model
 
     public function postCategoria()
     {
+
+        $pagina = (int) $this->__get('pagina') ?: 1;
+        $limite = (int) $this->__get('limite') ?: 10;
+        $offset = ($pagina - 1) * $limite;
+
+        // total de resultados da caegoria
+        $queryCount = "SELECT COUNT(*) AS total
+            FROM tb_posts AS p
+            INNER JOIN tb_categorias AS c ON p.categoria_id = c.id
+            WHERE p.status = 'publicado'
+            AND (p.titulo LIKE :busca OR p.conteudo LIKE :busca OR p.resumo LIKE :busca)";
+        $stmtCount = $this->db->prepare($queryCount);
+        $stmtCount->bindValue(':busca', '%' . $this->__get('busca') . '%');
+        $stmtCount->execute();
+        $total = (int) $stmtCount->fetch(\PDO::FETCH_ASSOC)['total'];
+
 
         $query = "SELECT p.*, c.nome FROM tb_posts AS p
                   INNER JOIN tb_categorias AS c ON (p.categoria_id = c.id)
