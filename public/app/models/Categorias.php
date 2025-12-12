@@ -25,7 +25,6 @@ class Categorias extends Model
 
     public function listarCategorias()
     {
-
         $query = "SELECT id, nome, slug, descricao FROM tb_categorias ORDER BY nome ASC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
@@ -35,8 +34,7 @@ class Categorias extends Model
 
     public function categoriaDestaque()
     {
-
-        $query = "SELECT p.id, p.categoria_id, p.titulo, p.slug, p.resumo, p.imagem
+        $query = "SELECT p.id, p.categoria_id, p.titulo, p.slug, p.resumo, p.imagem, c.nome AS categoria_nome
             FROM tb_posts AS p
             INNER JOIN tb_categorias AS c 
                 ON p.categoria_id = c.id
@@ -54,32 +52,51 @@ class Categorias extends Model
 
     public function postCategoria()
     {
-
         $pagina = (int) $this->__get('pagina') ?: 1;
         $limite = (int) $this->__get('limite') ?: 10;
         $offset = ($pagina - 1) * $limite;
 
-        // total de resultados da caegoria
+        //conta todos os registros da categoria (para paginação)
         $queryCount = "SELECT COUNT(*) AS total
-            FROM tb_posts AS p
-            INNER JOIN tb_categorias AS c ON p.categoria_id = c.id
-            WHERE p.status = 'publicado'
-            AND (p.titulo LIKE :busca OR p.conteudo LIKE :busca OR p.resumo LIKE :busca)";
+               FROM tb_posts AS p
+               INNER JOIN tb_categorias AS c ON c.id = p.categoria_id
+               WHERE c.slug = :slug
+               AND p.status = 'publicado'";
         $stmtCount = $this->db->prepare($queryCount);
-        $stmtCount->bindValue(':busca', '%' . $this->__get('busca') . '%');
+        $stmtCount->bindValue(':slug', $this->__get('slug'));
         $stmtCount->execute();
         $total = (int) $stmtCount->fetch(\PDO::FETCH_ASSOC)['total'];
 
 
-        $query = "SELECT p.*, c.nome FROM tb_posts AS p
-                  INNER JOIN tb_categorias AS c ON (p.categoria_id = c.id)
-                  WHERE c.slug = :slug AND p.status = 'publicado' AND p.destaque_categoria = 0
-                  ORDER BY p.created_at DESC";
+        // total de resultados da categoria
+        $query = "SELECT 
+                p.id,
+                p.titulo,
+                p.slug,
+                p.resumo,
+                p.imagem,
+                p.created_at,
+                c.nome AS categoria_nome
+                FROM tb_posts AS p
+                INNER JOIN tb_categorias AS c ON c.id = p.categoria_id
+                WHERE c.slug = :slug
+                    AND p.status = 'publicado'
+                ORDER BY p.created_at DESC
+                LIMIT :limit OFFSET :offset";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':limit', $limite, \PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $stmt->execute();
+        $dados = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return [
+            'data' => $dados,
+            'total' => $total,
+            'pagina' => $pagina,
+            'limite' => $limite,
+            'paginas' => ($total > 0) ? ceil($total / $limite) : 0
+        ];
     }
 }

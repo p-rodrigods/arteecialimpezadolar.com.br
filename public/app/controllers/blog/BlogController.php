@@ -16,7 +16,7 @@ class BlogController extends ActionBlog
         if (isset($_GET['post'])) {
 
             $post->__set('slug', $_GET['post']);
-            $this->view->postSelecionado = $post->postSelecionado()[0];
+            $this->view->postSelecionado = $post->postSelecionado()[0] ?? null;
             $this->render('posts');
             
         } else if(isset($_GET['categoria'])) {
@@ -24,12 +24,13 @@ class BlogController extends ActionBlog
             $categoria->__set('slug', $_GET['categoria']);
 
             if (isset($_GET['p'])) {
-                $post->__set('pagina', $_GET['p']);
+                $categoria->__set('pagina', $_GET['p']);
             }
             
-            $this->view->destaqueCategoria = $categoria->categoriaDestaque()[0];
+            $this->view->categoriaSlug = $categoria->__get('slug');
+            $this->view->destaqueCategoria = $categoria->categoriaDestaque()[0] ?? null;
             $this->view->postsCategoria = $categoria->postCategoria();
-            
+
             $this->render('categorias');
 
         } else {
@@ -38,15 +39,13 @@ class BlogController extends ActionBlog
                 $post->__set('pagina', $_GET['p']);
             }
 
-            $this->view->destaque = $post->destaques()[0];
+            $this->view->destaque = $post->destaques()[0] ?? null;
             $this->view->listarTodos = $post->listarTodos();
-
             $this->render('index');
         }
     }
 
     public function buscar()  
-
     {
         $buscar = Container::getModel('Posts');
 
@@ -57,7 +56,6 @@ class BlogController extends ActionBlog
         }
 
         $this->view->busca = $buscar->__get('busca');
-
         $this->view->pesquisa = $buscar->pesquisa();
 
         if (isset($this->view->pesquisa['data'])) {
