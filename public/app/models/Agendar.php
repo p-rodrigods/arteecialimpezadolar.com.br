@@ -33,7 +33,7 @@ class Agendar extends Model{
     public function agendar(){
 
         $query = "INSERT INTO tb_agendamentos(
-            tb_nome, tb_contato, tb_tipo, tb_servico, tb_sala, tb_quarto, tb_cozinha, tb_banheiro, tb_varanda, tb_garagem, tb_area_servico, tb_frequencia, tb_horas_ps, tb_horas_cdi, tb_mais_informacoes
+            nome, contato, tipo, servico, sala, quarto, cozinha, banheiro, varanda, garagem, area_servico, frequencia, horas_ps, horas_cdi, mais_informacoes
         ) VALUES (
             :nome, :contato, :tipo, :servico, :sala, :quarto, :cozinha, :banheiro, :varanda, :garagem, :area_servico, :frequencia, :horas_ps, :horas_cdi, :mais_informacoes
         )";

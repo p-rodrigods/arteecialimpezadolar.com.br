@@ -74,12 +74,29 @@ class Route extends Bootstrap
             'action' => 'buscar'
         );
 
+        // Adiciona rota Admin
+        $routes['admin'] = array(
+            'route' => '/admin',
+            'pasta' => 'admin',
+            'controller' => 'AdminController',
+            'action' => 'index'
+        );
+
+        // Adiciona rota Admin autenticar
+        $routes['admin-authenticate'] = array( 
+            'route' => '/admin-authenticate',
+            'pasta' => 'admin',
+            'controller' => 'AdminController',
+            'action' => 'authenticate'
+        );
+
         // Adiciona rota notFound
         $routes['notFound'] = array(
             'route' => '/notFound',
             'controller' => 'NotFoundController',
             'action' => 'notFound'
         );
+
 
 
 

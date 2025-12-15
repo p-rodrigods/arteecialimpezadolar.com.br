@@ -22,7 +22,7 @@ class Recrutamento extends Model{
     public function cadastrar(){
 
         $query = "INSERT INTO tb_recrutamento(
-          tb_nome, tb_email, tb_contato, tb_caminho_arquivo
+          nome, email, contato, caminho_arquivo
         ) VALUES (
             :nome, :email, :contato, :caminho_arquivo
         )";

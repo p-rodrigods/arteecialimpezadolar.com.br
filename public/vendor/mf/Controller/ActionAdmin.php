@@ -1,10 +1,8 @@
-<?php
+<?php 
 
 namespace mf\Controller;
 
-use mf\Model\Container;
-
-abstract class ActionBlog
+abstract class ActionAdmin
 {
 
     protected $view;
@@ -16,10 +14,8 @@ abstract class ActionBlog
 
     protected function render($view)
     {   
-       $categorias = Container::getModel('Categorias');
-       $this->view->categorias = $categorias->listarCategorias();
        $this->view->page = $view;
-       require_once "app/views/layouts/layout3.phtml";
+       require_once "app/views/layouts/admin.phtml";
     }
 
     protected function content()
@@ -32,3 +28,5 @@ abstract class ActionBlog
         require_once "app/views/{$class}/{$this->view->page}.phtml";
     }
 }
+
+?>

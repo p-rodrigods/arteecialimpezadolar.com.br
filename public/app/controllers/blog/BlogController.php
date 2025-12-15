@@ -8,58 +8,65 @@ use mf\Model\Container;
 class BlogController extends ActionBlog
 {
 
+    private $post;
+    private $categoria;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->post = Container::getModel('Posts');
+        $this->categoria = Container::getModel('Categorias');
+    }
+
     public function index()
     {
-        $post = Container::getModel('Posts');
-        $categoria = Container::getModel('Categorias');
-
+       
         if (isset($_GET['post'])) {
 
-            $post->__set('slug', $_GET['post']);
-            $this->view->postSelecionado = $post->postSelecionado()[0] ?? null;
+            $this->post->__set('slug', $_GET['post']);
+            $this->view->postSelecionado = $this->post->postSelecionado()[0] ?? null;
             $this->render('posts');
             
         } else if(isset($_GET['categoria'])) {
 
-            $categoria->__set('slug', $_GET['categoria']);
+            $this->categoria->__set('slug', $_GET['categoria']);
 
             if (isset($_GET['p'])) {
-                $categoria->__set('pagina', $_GET['p']);
+                $this->categoria->__set('pagina', $_GET['p']);
             }
             
-            $this->view->categoriaSlug = $categoria->__get('slug');
-            $this->view->destaqueCategoria = $categoria->categoriaDestaque()[0] ?? null;
-            $this->view->postsCategoria = $categoria->postCategoria();
+            $this->view->categoriaSlug = $this->categoria->__get('slug');
+            $this->view->destaqueCategoria = $this->categoria->categoriaDestaque()[0] ?? null;
+            $this->view->postsCategoria = $this->categoria->postCategoria();
 
             $this->render('categorias');
 
         } else {
 
             if (isset($_GET['p'])) {
-                $post->__set('pagina', $_GET['p']);
+                $this->post->__set('pagina', $_GET['p']);
             }
 
-            $this->view->destaque = $post->destaques()[0] ?? null;
-            $this->view->listarTodos = $post->listarTodos();
+            $this->view->destaque = $this->post->destaques()[0] ?? null;
+            $this->view->listarTodos = $this->post->listarTodos();
             $this->render('index');
         }
     }
 
     public function buscar()  
     {
-        $buscar = Container::getModel('Posts');
 
-        $buscar->__set('busca', $_GET['s']);
+        $this->post->__set('busca', $_GET['s']);
 
         if (isset($_GET['p'])) {
-            $buscar->__set('pagina', $_GET['p']);
+            $this->post->__set('pagina', $_GET['p']);
         }
 
-        $this->view->busca = $buscar->__get('busca');
-        $this->view->pesquisa = $buscar->pesquisa();
+        $this->view->busca = $this->post->__get('busca');
+        $this->view->pesquisa = $this->post->pesquisa();
 
         if (isset($this->view->pesquisa['data'])) {
-            $this->view->tempoLeitura = $buscar->tempoLeitura();
+            $this->view->tempoLeitura = $this->post->tempoLeitura();
         }
 
         $this->render('buscar');
