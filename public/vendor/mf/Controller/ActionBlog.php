@@ -19,7 +19,7 @@ abstract class ActionBlog
        $categorias = Container::getModel('Categorias');
        $this->view->categorias = $categorias->listarCategorias();
        $this->view->page = $view;
-       require_once "app/views/layouts/layout3.phtml";
+       require_once "app/views/layouts/blog.phtml";
     }
 
     protected function content()

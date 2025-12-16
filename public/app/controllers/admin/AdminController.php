@@ -17,15 +17,13 @@ class AdminController extends ActionAdmin
 
     public function index()
     {
-        //$this->view->dadosUsuario = $_SESSION['usuario'];
         $this->render('index');
-
     }
 
     public function logout()
     {
         session_destroy();
-        header("Location: /");
+        header("Location: /admin");
     }  
     
     public function authenticate(){
@@ -34,13 +32,17 @@ class AdminController extends ActionAdmin
        $this->usuario->__set('email', $_POST['usuario']);
        $this->usuario->__set('senha', $_POST['senha']);
     
-       if($this->usuario->autenticar()){
-             $_SESSION['usuario'] = $this->usuario;
+       if($this->usuario->autenticar() == true){
              echo "success";
-             return;
-         } 
+        } 
     }
     
+    public function dashboard()
+    {   
+        session_start();
+        $this->view->dadosUsuario = $_SESSION['usuario'];
+        $this->render('dashboard');
+    }
 
 }
 

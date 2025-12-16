@@ -77,7 +77,7 @@ class IndexController extends ActionIndex
   }
 
   // Renderiza a pagina de sucesso do recrutamento
-  public function sucess()
+  public function success()
   {
     $this->render('pagina-sucesso');
   }

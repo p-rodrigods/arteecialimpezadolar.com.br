@@ -26,7 +26,7 @@ abstract class Bootstrap {
         return $this->$name;
     }
 
-       //Pega a URL atual
+    //Pega a URL atual
     protected function getUrl()
     {
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -59,7 +59,6 @@ abstract class Bootstrap {
         }
 
         if (!$rotaEncontrada) {
-
 
             $class = "app\\controllers\\" . $this->routes['notFound']['controller'];
             $controller = new $class;

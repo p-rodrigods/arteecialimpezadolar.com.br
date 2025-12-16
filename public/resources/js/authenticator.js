@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch('/admin-authenticate', {
                 method: 'POST',
                 headers: {     
-                    'Content-Type': 'aplication/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: formBody
             }).then(response => response.text())
             .then(data => {
                 if (data === 'success') { 
-                    window.location.href = '/admin/dashboard';
+                    window.location.href = '/dashboard';
                 } else {
                     document.getElementById('error').style.display = 'block';
                 }   

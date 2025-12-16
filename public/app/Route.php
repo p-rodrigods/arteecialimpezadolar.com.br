@@ -3,105 +3,57 @@
 namespace app;
 
 use mf\Init\Bootstrap;
+use app\routes\Routes;
 
 class Route extends Bootstrap
 {
-
     //Define as rotas do sistema
     public function initRoutes()
-    {
-        // Adiciona rota home
-        $routes['home'] = array(
-            'route' => '/',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'index'
-        );
+    {   
+        //Instancia a classe Routes
+        $routes = new Routes();
 
-        // Adiciona rota agendar
-        $routes['agendamento'] = array(
-            'route' => '/agendamento',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'agendamento'
-        );
+        // Adiciona rota home usando o método add
+        $routes->add('home', '/', 'site', 'IndexController','index');
 
-        // Adiciona rota para insert
-        $routes['agendamento-insert'] = array(
-            'route' => '/agendamento-insert',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'insertAgendamento'
-        );
+        // Adiciona rota agendamento usando o método add
+        $routes->add('agendamento', '/agendamento', 'site', 'IndexController','agendamento');
 
-        // Adiciona rota recrutamento
-        $routes['recrutamento'] = array(
-            'route' => '/recrutamento',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'recrutamento'
-        );
+        // Adiciona rota para insert agendamento
+        $routes->add('agendamento-insert', '/agendamento-insert', 'site', 'IndexController','insertAgendamento');
+
+        // Adiciona rota recrutamento usando o método add
+        $routes->add('recrutamento', '/recrutamento', 'site', 'IndexController','recrutamento');
 
         // Adiciona rota para cadastrar recrutamento
-        $routes['recrutamento-insert'] = array(
-            'route' => '/recrutamento-insert',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'insertRecrutamento'
-        );
+        $routes->add('recrutamento-insert', '/recrutamento-insert', 'site', 'IndexController','insertRecrutamento');
 
-        // Adiciona rota recrutamento sucesso
-        $routes['recrutamento-sucesso'] = array(
-            'route' => '/recrutamento-sucesso',
-            'pasta' => 'site',
-            'controller' => 'IndexController',
-            'action' => 'sucess'
-        );
+        // Adiciona rota para mensagem de sucesso do recrutamento
+        $routes->add('recrutamento-sucesso', '/recrutamento-sucesso', 'site', 'IndexController','success');
 
         // Adiciona rota do BLOG
-        $routes['blog'] = array(
-            'route' => '/blog',
-            'pasta' => 'blog',
-            'controller' => 'BlogController',
-            'action' => 'index'
-        );
+        $routes->add('blog', '/blog', 'blog', 'BlogController','index');
 
         // Adiciona rota Buscar
-        $routes['buscar'] = array(
-            'route' => '/buscar',
-            'pasta' => 'blog',
-            'controller' => 'BlogController',
-            'action' => 'buscar'
-        );
+        $routes->add('buscar', '/buscar', 'blog', 'BlogController','buscar');
 
         // Adiciona rota Admin
-        $routes['admin'] = array(
-            'route' => '/admin',
-            'pasta' => 'admin',
-            'controller' => 'AdminController',
-            'action' => 'index'
-        );
+        $routes->add('admin', '/admin', 'admin', 'AdminController','index');
 
         // Adiciona rota Admin autenticar
-        $routes['admin-authenticate'] = array( 
-            'route' => '/admin-authenticate',
-            'pasta' => 'admin',
-            'controller' => 'AdminController',
-            'action' => 'authenticate'
-        );
+        $routes->add('admin-authenticate', '/admin-authenticate', 'admin', 'AdminController','authenticate');
+
+        // Adiciona rota Admin logout
+        $routes->add('admin-logout', '/admin-logout', 'admin', 'AdminController','logout');
+
+        // Adiciona rota dashboard
+        $routes->add('dashboard', '/dashboard', 'admin', 'DashboardController','index');
 
         // Adiciona rota notFound
-        $routes['notFound'] = array(
-            'route' => '/notFound',
-            'controller' => 'NotFoundController',
-            'action' => 'notFound'
-        );
+        $routes->add('notFound', '/notFound', '', 'NotFoundController','notFound');
 
+        return $this->__set('routes', $routes->getRoutes());
 
-
-
-        return $this->__set('routes', $routes);
     }
 
-    
 }

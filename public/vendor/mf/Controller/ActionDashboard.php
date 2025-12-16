@@ -1,8 +1,8 @@
-<?php
+<?php 
 
 namespace mf\Controller;
 
-abstract class ActionIndex
+abstract class ActionDashboard
 {
 
     protected $view;
@@ -15,19 +15,16 @@ abstract class ActionIndex
     protected function render($view)
     {   
        $this->view->page = $view;
-       require_once "app/views/layouts/index.phtml";
+       require_once "app/views/layouts/dashboard.phtml";
     }
 
     protected function content()
     {
         $class = get_class($this);
-
-        //Remove o namespace e o sufixo Controller
         $class = str_replace('app\\controllers\\', '', $class);
         $class = strtolower(str_replace('Controller', '', $class));
         $class = explode('\\', $class);
         $class = $class[1];
-
         require_once "app/views/{$class}/{$this->view->page}.phtml";
     }
 }
