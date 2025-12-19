@@ -40,13 +40,11 @@ class IndexController extends ActionIndex
     $tb_agendar->__set('frequencia', $_POST['frequencia']);
     $tb_agendar->__set('mais_informacoes', $_POST['maisInformacoes']);
 
-    $result = '';
-
     if ($tb_agendar->agendar()) {
-      $result = "sucesso";
+       echo "sucesso";
+
     }
 
-    require_once 'app/views/layouts/result.phtml';
   }
 
   // Renderiza a pagina de Recrutamento
@@ -67,13 +65,10 @@ class IndexController extends ActionIndex
     $tb_recrutamento->__set('contato', $_POST['contato']);
     $tb_recrutamento->__set('caminho_arquivo', $caminhoDB);
 
-    $result = '';
-
     if ($tb_recrutamento->cadastrar()) {
-      $result = "sucesso";
+      echo "sucesso";
     }
 
-    require_once 'app/views/layouts/result.phtml';
   }
 
   // Renderiza a pagina de sucesso do recrutamento
