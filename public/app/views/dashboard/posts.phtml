@@ -1,17 +1,23 @@
 <!-- CONTAINER: CRIAR / EDITAR POST (ADMIN) -->
-<style>
-
-</style>
-
 <div class="container-post">
-    
-  <form method="POST" action="salvar.php" enctype="multipart/form-data" class="form-post">
-    
+
+  <form enctype="multipart/form-data" class="form-post" id="form-criar-post">
+
     <h2>Criar nova postagem</h2>
 
     <div class="form-group">
+      <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria">
+              <option value=""> -- Selecione uma categoria --</option>
+      <?php foreach ($this->view->categorias as $categoria): ?>
+        <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
+      <?php endforeach; ?>
+    </select>
+    </div>
+
+    <div class="form-group">
       <label for="titulo">Título do post</label>
-      <input type="text" id="titulo" name="titulo" required placeholder="Digite o título da postagem">
+      <input type="text" id="titulo" name="titulo" placeholder="Digite o título da postagem">
     </div>
 
     <div class="form-group">
@@ -41,8 +47,8 @@
     </div>
 
     <div class="form-group">
-      <label for="conteudo">Conteúdo do post</label>
-      <textarea id="conteudo" name="conteudo" rows="14" placeholder="Escreva o conteúdo completo da postagem"></textarea>
+      <label for="conteudo">Conteúdo</label>
+      <textarea id="conteudo" name="conteudo"></textarea>
     </div>
 
     <div class="form-actions">
@@ -54,25 +60,38 @@
 
 </div>
 
+<script src="https://cdn.tiny.cloud/1/wn94rnmhymxxqz5ggtxu940tzy1qa78sl50knhqvs88zkul7/tinymce/6/tinymce.min.js"></script>
 <script>
-function gerarSlug(texto) {
-  return texto
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9 ]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-}
-
-const tituloInput = document.getElementById('titulo');
-const slugInput = document.getElementById('slug');
-let slugEditado = false;
-
-slugInput.addEventListener('input', () => slugEditado = true);
-
-tituloInput.addEventListener('input', () => {
-  if (!slugEditado) {
-    slugInput.value = gerarSlug(tituloInput.value);
-  }
-});
+  tinymce.init({
+    selector: '#conteudo',
+    height: 400,
+    menubar: false,
+    plugins: 'lists link image code',
+    toolbar: 'undo redo | blocks | bold italic | bullist numlist | blockquote | link image | removeformat | code',
+    branding: false
+  });
 </script>
+
+<script>
+  function gerarSlug(texto) {
+    return texto
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+  }
+
+  const tituloInput = document.getElementById('titulo');
+  const slugInput = document.getElementById('slug');
+  let slugEditado = false;
+
+  slugInput.addEventListener('input', () => slugEditado = true);
+
+  tituloInput.addEventListener('input', () => {
+    if (!slugEditado) {
+      slugInput.value = gerarSlug(tituloInput.value);
+    }
+  });
+</script>
+<script type="module" src="/public/resources/js/criar_posts.js"></script>

@@ -24,7 +24,8 @@ class DashboardController extends ActionDashboard
         //Recupera todos os posts do banco de dados
         $post = Container::getModel('Post');
         $this->view->posts = $post->getAllPosts();*/
-
+        $categoria = Container::getModel('Categorias');
+        $this->view->categorias = $categoria->listarCategorias();
         $this->render('posts');
     }
 }
