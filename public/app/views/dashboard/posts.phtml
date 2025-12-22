@@ -52,8 +52,7 @@
     </div>
 
     <div class="form-actions">
-      <button type="submit" name="acao" value="rascunho" class="btn secondary">Salvar rascunho</button>
-      <button type="submit" name="acao" value="publicar" class="btn primary">Publicar</button>
+      <button type="submit" name="acao" value="publicar" class="btn primary">Avançar</button>
     </div>
 
   </form>
@@ -62,18 +61,8 @@
 
 <script src="https://cdn.tiny.cloud/1/wn94rnmhymxxqz5ggtxu940tzy1qa78sl50knhqvs88zkul7/tinymce/6/tinymce.min.js"></script>
 <script>
-  tinymce.init({
-    selector: '#conteudo',
-    height: 400,
-    menubar: false,
-    plugins: 'lists link image code',
-    toolbar: 'undo redo | blocks | bold italic | bullist numlist | blockquote | link image | removeformat | code',
-    branding: false
-  });
-</script>
-
-<script>
-  function gerarSlug(texto) {
+  // Função para gerar slug a partir do título
+ function gerarSlug(texto) {
     return texto
       .toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -93,5 +82,15 @@
       slugInput.value = gerarSlug(tituloInput.value);
     }
   });
+
+// Inicialização do TinyMCE para o campo de conteúdo
+  tinymce.init({
+  selector: '#conteudo',
+  height: 400,
+  menubar: false,
+  plugins: 'lists link image code',
+  toolbar: 'undo redo | blocks | bold italic | bullist numlist | blockquote | link image | removeformat | code',
+  branding: false
+  });  
+
 </script>
-<script type="module" src="/public/resources/js/criar_posts.js"></script>

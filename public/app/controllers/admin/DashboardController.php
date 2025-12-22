@@ -15,7 +15,6 @@ class DashboardController extends ActionDashboard
         $this->render('index');
     }
 
-
     public function posts()
     {
         /*session_start();

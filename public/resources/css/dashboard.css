@@ -260,3 +260,32 @@ table th {
 .btn.secondary:hover {
   background-color: #ddd;
 }
+
+/* CLASSES MOLDAIS*/
+
+.showSuccessModal {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+
+.errorModal {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background-color: #cff4fc;
+    color: #055160;
+    padding: 15px;
+    border: 1px solid #b6effb;
+    border-radius: 5px;
+    z-index: 1000;
+}

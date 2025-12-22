@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
                        formData.append('contato', dados.contato);
                        formData.append('arquivo', curriculo);
 
-
                         fetch('/recrutamento-insert', {
                                 method: 'POST',
                                 body: formData

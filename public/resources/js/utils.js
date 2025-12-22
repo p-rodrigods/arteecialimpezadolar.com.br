@@ -1,3 +1,6 @@
+
+// Função para exibir modal de erro
+
 export function showErrorModal(message) {
     const errorModal = document.getElementById('errorModal');
     const errorModalMessage = document.getElementById('errorModalMessage');
@@ -15,6 +18,8 @@ export function showErrorModal(message) {
         errorModal.style.display = 'none';
     }, 5000);
 }
+
+// Função para exibir modal de sucesso
 
 export function showSuccessModal(message) {
     const successModal = document.getElementById('showSuccessModal');
@@ -34,6 +39,8 @@ export function showSuccessModal(message) {
     }, 5000);
 }
 
+// Função para resetar os campos do formulário
+
 export function resetCampos() {
 
         document.getElementById('qtdRoupasPassar').value = "";
@@ -46,3 +53,4 @@ export function resetCampos() {
         document.getElementById('qtdAreaServico').value = 0;
         document.getElementById('qtdGaragem').value = 0;
 }
+
