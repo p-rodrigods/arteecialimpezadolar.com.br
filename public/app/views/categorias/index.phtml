@@ -1,0 +1,160 @@
+
+    <!-- Header da página -->
+    <header class="page-header">
+        <div class="page-title">
+            <h1>Categorias</h1>
+            <p>Gerencie as categorias do conteúdo</p>
+        </div>
+
+        <div class="page-actions">
+            <a href="/categorias/criar" type="button" class="btn btn-primary" id="btnNovaCategoria">
+                + Nova Categoria
+            </a>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <section class="page-body">
+
+        <!-- Estado vazio -->
+        <!-- Mostrar somente se não houver categorias -->
+        <div class="empty-state" hidden>
+            <p>Nenhuma categoria cadastrada.</p>
+            <button type="button" class="btn btn-primary">
+                Criar primeira categoria
+            </button>
+        </div>
+
+        <!-- Tabela de categorias -->
+        <div class="table-wrapper">
+            <table class="table-categorias">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Slug</th>
+                        <th>Status</th>
+                        <th>Posts</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Linha de categoria -->
+                    <tr>
+                        <td>
+                            <strong>Limpeza</strong>
+                        </td>
+                        <td>
+                            <span class="text-muted">limpeza</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-success">Ativo</span>
+                        </td>
+                        <td>12</td>
+                        <td class="actions">
+                            <button
+                                class="btn-icon btn-edit"
+                                data-id="3"
+                                data-nome="Limpeza"
+                                data-slug="limpeza"
+                                data-status="ativo">
+                                ✏️
+                            </button>
+
+                            <button
+                                class="btn-icon btn-delete"
+                                data-id="3"
+                                data-posts="12">
+                                🗑️
+                            </button>
+
+                        </td>
+                    </tr>
+
+                    <!-- Outras linhas -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+<div class="modal" id="modalCategoria" hidden>
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2 id="modalTitulo">Nova Categoria</h2>
+            <button class="modal-close" aria-label="Fechar">×</button>
+        </header>
+
+        <form id="formCategoria">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="nome">Nome da categoria *</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        required
+                        autocomplete="off">
+                    <small class="form-error" hidden>
+                        O nome é obrigatório.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug</label>
+                    <input
+                        type="text"
+                        id="slug"
+                        name="slug"
+                        autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="status" value="ativo" checked>
+                            Ativo
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="inativo">
+                            Inativo
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCancelar">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Salvar
+                </button>
+            </footer>
+
+        </form>
+    </div>
+</div>
+<div class="modal" id="modalExcluir" hidden>
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content modal-sm">
+        <header class="modal-header">
+            <h2>Excluir categoria</h2>
+        </header>
+
+        <div class="modal-body">
+            <p id="mensagemExclusao">
+                Tem certeza que deseja excluir esta categoria?
+            </p>
+        </div>
+
+        <footer class="modal-footer">
+            <button class="btn btn-secondary">Cancelar</button>
+            <button class="btn btn-danger">Excluir</button>
+        </footer>
+    </div>
+</div>

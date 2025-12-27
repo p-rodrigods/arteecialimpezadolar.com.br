@@ -55,7 +55,6 @@ class BlogController extends ActionBlog
 
     public function buscar()  
     {
-
         $this->post->__set('busca', $_GET['s']);
 
         if (isset($_GET['p'])) {

@@ -11,7 +11,7 @@ main{
 }
 
 body {
-    background: url(../img/capa\(2\).jpg);
+    background: url(../img/site/capa\(2\).jpg);
     background-attachment: fixed;
     font-family: Helvetica, Arial, sans-serif;
     transition: background-color 0.3s ease, transform 0.3s ease;

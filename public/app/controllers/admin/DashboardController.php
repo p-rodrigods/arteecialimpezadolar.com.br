@@ -20,45 +20,10 @@ class DashboardController extends ActionDashboard
 
     public function index()
     {   
-        $this->view->dadosUsuario = $_SESSION['usuario'];
+        $this->view->totalPosts = $this->post->countPosts();
+        $this->view->totalRascunhos = $this->post->countRascunhos();
+        $this->view->postsRecentes = $this->post->listarPostsDashboard();
         $this->render('index');
     }
 
-    public function posts()
-    {
-        /*session_start();
-        $this->view->dadosUsuario = $_SESSION['usuario'];
-
-        //Recupera todos os posts do banco de dados
-        $post = Container::getModel('Post');
-        $this->view->posts = $post->getAllPosts();*/
-
-        $this->view->categorias = $this->categoria->listarCategorias();
-        $this->render('posts');
-    }
-
-    public function create()
-    {
-
-       /* $this->view->dadosUsuario = $_SESSION['usuario'];
-        $this->view->categorias = $this->categoria->listarCategorias();
-        $this->render('createPost');*/
-
-
-       $this->post->__set('categoria_id', $_POST['categorias']);  
-       $this->post->__set('titulo', $_POST['titulo']);
-       $this->post->__set('slug', $_POST['slug']);
-       $this->post->__set('status', $_POST['status']);
-       $this->post->__set('resumo', $_POST['resumo']);
-       $this->post->__set('conteudo', $_POST['conteudo']);
-       $caminho =$this->post->UploadImagem($_FILES['imagem_capa']);
-       $this->post->__set('caminho_imagem', $caminho);
-       $this->post->__set('autor', 'Equipe Arte&Cia');  
-
-        if($this->post->NovoPost()){
-            echo "sucesso";
-        } else {
-            echo "erro";
-        }
-    }
 }

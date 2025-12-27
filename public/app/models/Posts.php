@@ -32,6 +32,36 @@ class Posts extends Model
         $this->$attr = $value;
     }
 
+    // Método para contar posts publicados
+    public function countPosts()
+    {
+        $query = "SELECT COUNT(*) AS total FROM tb_posts WHERE status = 'publicado'";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return (int) $result['total'];
+    }
+
+    // Método para contar rascunhos
+    public function countRascunhos()
+    {
+        $query = "SELECT COUNT(*) AS total FROM tb_posts WHERE status = 'rascunho'";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return (int) $result['total'];
+    }
+
+    // Método para obter titulo, status e data de criação de todos os posts
+    public function listarPostsDashboard()
+    {
+        $query = "SELECT id, titulo, status, created_at FROM tb_posts ORDER BY created_at DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     // Métodos específicos
     public function destaques()
     {
@@ -45,7 +75,6 @@ class Posts extends Model
     // Método para obter post selecionado pelo slug
     public function postSelecionado()
     {
-
         $query = "SELECT * FROM tb_posts WHERE slug = :slug AND status = 'publicado'";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':slug', $this->__get('slug'));
