@@ -42,7 +42,7 @@ class Recrutamento extends Model{
             $arquivoTmp = $arquivo['tmp_name'];
             $nomeArquivo = basename($arquivo['name']);
 
-            $pastaDestino = "uploads/curriculos/";
+            $pastaDestino = "resources/uploads/curriculos/";
             if(!is_dir($pastaDestino)){
                 mkdir($pastaDestino, 0777, true);
             }

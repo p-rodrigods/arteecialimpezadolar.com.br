@@ -42,7 +42,6 @@ class IndexController extends ActionIndex
 
     if ($tb_agendar->agendar()) {
        echo "sucesso";
-
     }
 
   }

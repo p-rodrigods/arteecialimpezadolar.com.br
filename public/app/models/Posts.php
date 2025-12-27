@@ -19,7 +19,9 @@ class Posts extends Model
     private $busca;
     private $pagina;
     private $limite;
+    private $caminho_imagem;
 
+    // Getters e Setters
     public function __get($attr)
     {
         return $this->$attr;
@@ -30,6 +32,7 @@ class Posts extends Model
         $this->$attr = $value;
     }
 
+    // Métodos específicos
     public function destaques()
     {
         $query = "SELECT id, categoria_id, titulo, slug, resumo, imagem FROM tb_posts WHERE destaque_principal = 1 AND status = 'publicado' ORDER BY created_at DESC LIMIT 3";
@@ -39,6 +42,7 @@ class Posts extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    // Método para obter post selecionado pelo slug
     public function postSelecionado()
     {
 
@@ -50,6 +54,7 @@ class Posts extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    // Método para listar todos os posts com paginação
     public function listarTodos()
     {
         $pagina = (int) $this->__get('pagina') ?: 1;
@@ -96,17 +101,7 @@ class Posts extends Model
         ];
     }
 
-    public function cadastrar()
-    {
-        $query = "INSERT INTO tb_posts(titulo, conteudo, data_criacao) VALUES (:titulo, :conteudo, NOW())";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':titulo', $this->__get('titulo'));
-        $stmt->bindValue(':conteudo', $this->__get('conteudo'));
-        $stmt->execute();
-
-        return $this;
-    }
-
+    // Método para pesquisa de posts
     public function pesquisa(){
          
         $pagina = (int) $this->__get('pagina') ?: 1;
@@ -133,10 +128,6 @@ class Posts extends Model
                 p.imagem,
                 p.autor,
                 p.conteudo,
-                p.conteudo1,
-                p.conteudo2,
-                p.conteudo3,
-                p.conteudo4,
                 p.created_at,
                 c.nome AS categoria,
                 (
@@ -168,6 +159,7 @@ class Posts extends Model
 
     }
 
+    // Método para calcular o tempo de leitura de um post
     public function tempoLeitura() {
         $res = $this->pesquisa();
         $texto = '';
@@ -178,10 +170,6 @@ class Posts extends Model
         if (isset($items[0]) && is_array($items[0])) {
             foreach ($items as $item) {
                 $texto .= ($item['conteudo'] ?? '') . ' ';
-                $texto .= ($item['conteudo1'] ?? '') . ' ';
-                $texto .= ($item['conteudo2'] ?? '') . ' ';
-                $texto .= ($item['conteudo3'] ?? '') . ' ';
-                $texto .= ($item['conteudo4'] ?? '') . ' ';
             }
         }
         // If 'data' is a single associative post
@@ -196,5 +184,47 @@ class Posts extends Model
         $palavras = str_word_count(strip_tags($texto));
         $tempo = ($palavras > 0) ? (int) ceil($palavras / 200) : 0; // Considerando uma média de 200 palavras por minuto
         return $tempo;
+    }
+
+    // Método para cadastrar um novo post
+    public function NovoPost()
+    {
+        $query = "INSERT INTO tb_posts(categoria_id, titulo, slug, resumo, conteudo, imagem, autor, status, created_at) VALUES (:categoria, :titulo, :slug, :resumo, :conteudo, :imagem, :autor, :status, NOW())";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':categoria', $this->__get('categoria_id'));
+        $stmt->bindValue(':titulo', $this->__get('titulo'));
+        $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':resumo', $this->__get('resumo'));
+        $stmt->bindValue(':conteudo', $this->__get('conteudo'));
+        $stmt->bindValue(':imagem', $this->__get('caminho_imagem'));
+        $stmt->bindValue(':autor', $this->__get('autor'));
+        $stmt->bindValue(':status', $this->__get('status'));
+
+        $stmt->execute();
+
+        return $this;
+    }
+
+    // Método para upload de imagem
+    public function UploadImagem($imagem)
+    {
+        // Lógica para upload de imagem
+        if (isset($imagem) && $imagem['error'] === UPLOAD_ERR_OK) {
+            $arquivoTmp = $imagem['tmp_name'];
+            $nomeArquivo = basename($imagem['name']);
+
+            $pastaDestino = "resources/uploads/posts/";
+            if (!is_dir($pastaDestino)) {
+                mkdir($pastaDestino, 0777, true);
+            }
+
+            $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
+            $novoNome = uniqid("post_") . "." . $extensao;
+            $caminhoFinal = $pastaDestino . $novoNome;
+
+            if (move_uploaded_file($arquivoTmp, $caminhoFinal)) {
+                return $caminhoFinal;
+            }
+        }
     }
 }

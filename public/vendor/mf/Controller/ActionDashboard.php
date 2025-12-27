@@ -2,6 +2,8 @@
 
 namespace mf\Controller;
 
+
+
 abstract class ActionDashboard
 {
 
@@ -10,6 +12,7 @@ abstract class ActionDashboard
     public function __construct()
     {
         $this->view = new \stdClass();
+        Auth::requireLogin();
     }
 
     protected function render($view)

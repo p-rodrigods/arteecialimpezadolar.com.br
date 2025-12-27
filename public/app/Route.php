@@ -52,6 +52,9 @@ class Route extends Bootstrap
         // Adiciona rota para gerenciar posts
         $routes->add('manage-posts', '/posts', 'admin', 'DashboardController','posts');
 
+        // Adiciona rota para criar post
+        $routes->add('create-post', '/posts/criar', 'admin', 'DashboardController','create');
+
         // Adiciona rota notFound
         $routes->add('notFound', '/notFound', '', 'NotFoundController','notFound');
 

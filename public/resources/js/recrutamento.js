@@ -92,8 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         .catch(error => {
                                 console.error('Error: ', error);
                                 showErrorModal('Ocorreu um erro ao processar a solicitação');
-                        }
-                        )
+                        });
 
                 });
         }
