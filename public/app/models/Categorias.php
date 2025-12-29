@@ -10,9 +10,12 @@ class Categorias extends Model
     private $nome;
     private $slug;
     private $descricao;
+    private $status;
+    private $created_at;
     private $pagina;
     private $limite;
 
+    // Getters and Setters
     public function __get($attr)
     {
         return $this->$attr;
@@ -21,6 +24,21 @@ class Categorias extends Model
     public function __set($attr, $value)
     {
         $this->$attr = $value;
+    }
+
+    // Métodos para interagir com o banco de dados
+
+    public function NovaCategoria()
+    {
+        $query = "INSERT INTO tb_categorias (nome, slug, descricao, status, created_at) 
+                  VALUES (:nome, :slug, :descricao, :status, NOW())";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':descricao', $this->__get('descricao'));
+        $stmt->bindValue(':status', $this->__get('status'));
+
+        return $stmt->execute();
     }
 
     public function listarCategorias()

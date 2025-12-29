@@ -59,7 +59,10 @@ class Route extends Bootstrap
         $routes->add('manage-categories', '/categorias', 'admin', 'CategoriasController','index');
 
         // Nova Categoria
-        $routes->add('create-category', '/categorias/criar', 'admin', 'CategoriasController','novaCategoria');
+        $routes->add('create-category', '/categorias/nova-categoria', 'admin', 'CategoriasController','novaCategoria');
+
+        // Salvar Categoria
+        $routes->add('save-category', '/categorias/salvar', 'admin', 'CategoriasController','create');
 
         // Adiciona rota notFound
         $routes->add('notFound', '/notFound', '', 'NotFoundController','notFound');

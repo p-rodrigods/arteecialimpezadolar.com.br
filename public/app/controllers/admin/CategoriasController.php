@@ -5,7 +5,8 @@ namespace app\controllers\admin;
 use mf\Controller\ActionDashboard;
 use mf\Model\Container;
 
-class CategoriasController extends ActionDashboard{
+class CategoriasController extends ActionDashboard
+{
     private $categoria;
 
     public function __construct()
@@ -27,15 +28,13 @@ class CategoriasController extends ActionDashboard{
 
     public function create()
     {
-       $this->categoria->__set('nome', $_POST['nome']);  
-       $this->categoria->__set('slug', $_POST['slug']);
+        $this->categoria->__set('nome', $_POST['nome']);
+        $this->categoria->__set('slug', $_POST['slug']);
+        $this->categoria->__set('status', $_POST['status']);
+        $this->categoria->__set('descricao', $_POST['descricao']);
 
-        if($this->categoria->NovaCategoria()){
+        if ($this->categoria->NovaCategoria()) {
             echo "sucesso";
-        } else {
-            echo "erro";
-        }
-
-        $this->render('create');
+        } 
     }
 }
