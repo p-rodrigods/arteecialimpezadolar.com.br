@@ -43,7 +43,20 @@ class Categorias extends Model
 
     public function listarCategorias()
     {
-        $query = "SELECT id, nome, slug, descricao FROM tb_categorias ORDER BY nome ASC";
+
+        $query = "SELECT 
+    c.id,
+    c.nome,
+    c.slug,
+    c.descricao,
+    c.status,
+    COUNT(p.id) AS total_posts
+FROM tb_categorias c
+LEFT JOIN tb_posts p 
+    ON p.categoria_id = c.id
+GROUP BY 
+    c.id, c.nome, c.slug, c.descricao, c.status
+ORDER BY c.nome ASC;";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
 
