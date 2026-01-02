@@ -16,12 +16,20 @@ class PostController extends ActionDashboard
         parent::__construct();
         $this->categoria = Container::getModel('Categorias');
         $this->post = Container::getModel('Posts');
-    }
+    }  
     
     public function index()
+    {   
+        $this->view->totalPosts = $this->post->countPosts();
+        $this->view->totalRascunhos = $this->post->countRascunhos();
+        $this->view->postsRecentes = $this->post->listarPostsDashboard();
+        $this->render('index');
+    }
+
+    public function novoPost()
     {
         $this->view->categorias = $this->categoria->listarCategorias();
-        $this->render('index');
+        $this->render('novo-post');
     }
 
     public function create()
@@ -41,6 +49,16 @@ class PostController extends ActionDashboard
         } else {
             echo "erro";
         }
+    }
+
+    public function editarPost()
+    {
+        $this->post->__set('id', $_GET['id']);
+        
+        $this->view->post = $this->post->getPostById();
+        $this->view->categorias = $this->categoria->listarCategorias();
+
+        $this->render('edit-post');
     }
  
    

@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }).then(response => response.text())
             .then(data => {
                 if (data === 'success') { 
-                    window.location.href = '/dashboard';
+                    window.location.href = '/post';
                 } else {
                     document.getElementById('error').style.display = 'block';
                 }   

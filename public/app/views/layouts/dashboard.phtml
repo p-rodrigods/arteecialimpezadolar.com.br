@@ -18,8 +18,7 @@
       <?php $urlAtual = $_SERVER['REQUEST_URI']; ?>
       <h1>Arte&Cia</h1>
       <nav>
-        <a href="/dashboard" class="<?php echo ($urlAtual == '/dashboard') ? 'active' : ''; ?>">Dashboard</a>
-        <a href="/posts" class="<?php echo ($urlAtual == '/posts') ? 'active' : ''; ?>">Nova Postagem</a>
+        <a href="/post" class="<?php echo ($urlAtual == '/dashboard') ? 'active' : ''; ?>">Postagens</a>
         <a href="/categorias" class="<?php echo ($urlAtual == '/categorias' || $urlAtual == '/categorias/criar') ? 'active' : ''; ?>">Categorias</a>
         <a href="#">Configurações</a>
         <a href="/admin-logout">Sair</a>

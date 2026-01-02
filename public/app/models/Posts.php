@@ -35,7 +35,8 @@ class Posts extends Model
     // Método para contar posts publicados
     public function countPosts()
     {
-        $query = "SELECT COUNT(*) AS total FROM tb_posts WHERE status = 'publicado'";
+        $query = "SELECT COUNT(*) AS total FROM tb_posts 
+        WHERE status = 'publicado'";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -45,7 +46,8 @@ class Posts extends Model
     // Método para contar rascunhos
     public function countRascunhos()
     {
-        $query = "SELECT COUNT(*) AS total FROM tb_posts WHERE status = 'rascunho'";
+        $query = "SELECT COUNT(*) AS total FROM tb_posts 
+        WHERE status = 'rascunho'";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -55,7 +57,8 @@ class Posts extends Model
     // Método para obter titulo, status e data de criação de todos os posts
     public function listarPostsDashboard()
     {
-        $query = "SELECT id, titulo, status, created_at FROM tb_posts ORDER BY created_at DESC";
+        $query = "SELECT id, titulo, status, created_at FROM tb_posts 
+        ORDER BY created_at DESC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
 
@@ -65,7 +68,8 @@ class Posts extends Model
     // Métodos específicos
     public function destaques()
     {
-        $query = "SELECT id, categoria_id, titulo, slug, resumo, imagem FROM tb_posts WHERE destaque_principal = 1 AND status = 'publicado' ORDER BY created_at DESC LIMIT 3";
+        $query = "SELECT id, categoria_id, titulo, slug, resumo, imagem FROM tb_posts 
+        WHERE destaque_principal = 1 AND status = 'publicado' ORDER BY created_at DESC LIMIT 3";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
 
@@ -256,4 +260,16 @@ class Posts extends Model
             }
         }
     }
+
+    public function getPostById()
+    {
+        $query = "SELECT * FROM tb_posts WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    
 }

@@ -46,14 +46,22 @@ class Route extends Bootstrap
         // Adiciona rota Admin logout
         $routes->add('admin-logout', '/admin-logout', 'admin', 'AdminController','logout');
 
-        // Adiciona rota dashboard
-        $routes->add('dashboard', '/dashboard', 'admin', 'DashboardController','index');
+
+
+        // Adiciona rota para gerenciar posts
+        $routes->add('dashboard', '/post', 'admin', 'PostController','index');
                 
         // Adiciona rota para gerenciar posts
-        $routes->add('manage-posts', '/posts', 'admin', 'PostController','index');
+        $routes->add('manage-posts', '/post/novo-post', 'admin', 'PostController','novoPost');
 
         // Criar Post
-        $routes->add('create-post', '/posts/criar', 'admin', 'PostController','create');
+        $routes->add('create-post', '/post/criar', 'admin', 'PostController','create');
+
+        // Editar Post
+        $routes->add('edit-post', '/post/editar', 'admin', 'PostController','editarPost');
+
+        // Salvar Post Editado
+        $routes->add('save-edited-post', '/posts/salvar', 'admin', 'PostController','salvarEditado');
 
         // Adiciona rota para categorias
         $routes->add('manage-categories', '/categorias', 'admin', 'CategoriasController','index');
