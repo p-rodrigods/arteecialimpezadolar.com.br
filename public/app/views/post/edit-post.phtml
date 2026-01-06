@@ -1,11 +1,12 @@
 <!-- CONTAINER: CRIAR / EDITAR POST (ADMIN) -->
-<form enctype="multipart/form-data" class="form-post" id="form-edit-post">
-
+<form enctype="multipart/form-data" class="form-post mb-5" id="form-edit-post">
   <h2>Editar Postagem</h2>
-
+  <div>
+    <input type="hidden" name="id" id="id" value="<?= $this->view->post['id'] ?>">
+  </div>
   <div class="form-floating mb-3">
     <select id="categoria" name="categoria" class="form-select">
-      <option value=""> -- Selecione uma categoria --</option>
+      <option value="<?=  $this->view->post['categoria_id'] ?>"> -- Selecione uma categoria --</option>
       <?php foreach ($this->view->categorias as $categoria): ?>
         <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
       <?php endforeach; ?>
@@ -53,9 +54,8 @@
     <label for="conteudo">Conteúdo</label>
   </div>
 
-  <div class="form-actions">
-    <button type="reset" class="btn">Limpar</button>
-    <button type="submit" name="acao" value="publicar" class="btn primary">Avançar</button>
+ <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="submit" name="acao" value="publicar" class="btn btn-primary">Atualizar</button>
   </div>
 
 </form>
@@ -82,6 +82,5 @@
       slugInput.value = gerarSlug(tituloInput.value);
     }
   });
-
 
 </script>

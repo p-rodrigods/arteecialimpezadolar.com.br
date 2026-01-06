@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-5">
+            <div class="card-body">
+                <form id="form-deletar-post">
+                    <h2 class="mb-3">Excluir Postagem</h2>
+                    <p>Tem certeza que deseja excluir a postagem intitulada "<strong><?= htmlspecialchars($this->view->post['titulo']) ?></strong>"?</p>
+                    <input type="hidden" name="id" id="id" value="<?= $this->view->post['id'] ?>">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="/post" class="btn btn-secondary me-3">Cancelar</a>
+                        <button type="submit" name="acao" value="deletar" class="btn btn-danger">Excluir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

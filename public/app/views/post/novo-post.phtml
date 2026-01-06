@@ -1,67 +1,87 @@
 <!-- CONTAINER: CRIAR / EDITAR POST (ADMIN) -->
-  <form enctype="multipart/form-data" class="form-post" id="form-criar-post">
+<form enctype="multipart/form-data" class="form-post mb-5" id="form-criar-post">
 
-    <h2>Criar nova postagem</h2>
+  <h2>Criar nova postagem</h2>
 
-    <div class="form-group">
-      <label for="categoria">Categoria</label>
-          <select id="categoria" name="categoria">
-              <option value=""> -- Selecione uma categoria --</option>
+  <div class="form-floating mb-3">
+    <select id="categoria" name="categoria" class="form-select">
+      <option value=""> -- Selecione uma categoria --</option>
       <?php foreach ($this->view->categorias as $categoria): ?>
         <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
       <?php endforeach; ?>
     </select>
-    </div>
+    <label for="categoria">Categoria</label>
+  </div>
 
-    <div class="form-group">
-      <label for="titulo">Título do post</label>
-      <input type="text" id="titulo" name="titulo" placeholder="Digite o título da postagem">
-    </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Digite o título da postagem" value="">
+    <label for="titulo">Título do post</label>
+  </div>
 
-    <div class="form-group">
-      <label for="slug">Slug (URL)</label>
-      <input type="text" id="slug" name="slug" placeholder="gerado-automaticamente">
-      <small>Use apenas letras minúsculas e hífen</small>
-    </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="slug" name="slug" placeholder="gerado-automaticamente" value="">
+    <small>Use apenas letras minúsculas e hífen</small>
+    <label for="slug">Slug (URL)</label>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select name="status" id="status">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <select class="form-control" name="status" id="status">
           <option value="rascunho">Rascunho</option>
           <option value="publicado">Publicado</option>
         </select>
-      </div>
-
-      <div class="form-group">
-        <label for="capa">Imagem de capa</label>
-        <input type="file" id="capa" name="capa" accept="image/*">
+        <label for="status">Status</label>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="resumo">Resumo</label>
-      <textarea id="resumo" name="resumo" rows="3"  placeholder="Resumo curto para SEO e listagem"></textarea>
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <select class="form-control" name="status" id="status">
+          <option value="0">Não</option>
+          <option value="1">Sim</option>
+        </select>
+        <label for="status">Destaque Principal</label>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="conteudo">Conteúdo</label>
-      <textarea id="conteudo" name="conteudo"></textarea>
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <select class="form-control" name="status" id="status">
+          <option value="0">Não</option>
+          <option value="1">Sim</option>
+        </select>
+        <label for="status">Destaque da Categoria</label>
+      </div>
     </div>
-
-    <div class="form-actions">
-       <button type="reset" class="btn">Limpar</button>
-      <button type="submit" name="acao" value="publicar" class="btn primary">Avançar</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="capa">Imagem de capa</label>
+        <input class="form-control" type="file" id="capa" name="capa" accept="image/*" value="">
+      </div>
     </div>
+  </div>
 
-  </form>
+  <div class="form-floating mb-3">
+    <textarea class="form-control" placeholder="Resumo curto para SEO e listagem" id="resumo" style="height: 100px"></textarea>
+    <label for="resumo">Resumo</label>
+  </div>
 
+  <div class="form-floating mb-3">
+    <textarea class="form-control" placeholder="Conteudo" id="conteudo" style="height: 250px"></textarea>
+    <label for="conteudo">Conteúdo</label>
+  </div>
 
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="reset" class="btn btn-warning me-3">Limpar</button>
+    <button type="submit" name="acao" value="publicar" class="btn btn-primary">Avançar</button>
+  </div>
 
-<script src="https://cdn.tiny.cloud/1/wn94rnmhymxxqz5ggtxu940tzy1qa78sl50knhqvs88zkul7/tinymce/6/tinymce.min.js"></script>
+</form>
+
 <script>
   // Função para gerar slug a partir do título
- function gerarSlug(texto) {
+  function gerarSlug(texto) {
     return texto
       .toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -81,15 +101,4 @@
       slugInput.value = gerarSlug(tituloInput.value);
     }
   });
-
-// Inicialização do TinyMCE para o campo de conteúdo
-  tinymce.init({
-  selector: '#conteudo',
-  height: 400,
-  menubar: false,
-  plugins: 'lists link image code',
-  toolbar: 'undo redo | blocks | bold italic | bullist numlist | blockquote | link image | removeformat | code',
-  branding: false
-  });  
-
 </script>

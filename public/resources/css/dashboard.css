@@ -3,7 +3,7 @@
 .showSuccessModal {
     display: none;
     position: fixed;
-    top: 10px;
+    top: 60px;
     right: 20px;
     background-color: #d4edda;
     color: #155724;
@@ -17,7 +17,7 @@
 .errorModal {
     display: none;
     position: fixed;
-    top: 10px;
+    top: 60px;
     right: 20px;
     background-color: #cff4fc;
     color: #055160;

@@ -1,21 +1,26 @@
-  <main>
-    <header>
-      <h2>Postagens</h2>
-      <div class="user">Olá, Admin</div>
-    </header>
+    <div class="row my-3">
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5 class="card-title">
+            Posts publicados
+          </h5>
+          <p class="card-text">
+              <?= $this->view->totalPosts ?>
+          </p>        
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5 class="card-title">
+            Rascunhos
+          </h5>
+          <p class="card-text">
+             <?= $this->view->totalRascunhos ?>
+          </p>        
+        </div>
+      </div>
+    </div>
 
-    <section class="grid">
-        <a href="/post/novo-post" class="btn btn-primary">Nova Postagem</a>
-      <div class="card">
-        <h3>Posts publicados</h3>
-        <strong><?= $this->view->totalPosts ?></strong>
-      </div>
-      <div class="card">
-        <h3>Rascunhos</h3>
-        <strong><?= $this->view->totalRascunhos ?></strong>
-      </div>
-    </section>
-      
     <table class="table">
       <thead>
         <tr>
@@ -27,19 +32,17 @@
       </thead>
       <tbody>
         <?php foreach ($this->view->postsRecentes as $post): ?>
-        <tr>
-          <td><?= htmlspecialchars($post['titulo']) ?></td>
-          <td>
-            <?php  echo ucfirst($post['status']); ?>
-          </td>
-          <td><?= date('d/m/Y', strtotime($post['created_at'])) ?></td>
-          <td class="actions">
-            <a href="/post/editar?id=<?= $post['id']?>">Editar</a>
-            <a href="#">Excluir</a>
-          </td>
-        </tr>
+          <tr>
+            <td><?= htmlspecialchars($post['titulo']) ?></td>
+            <td>
+              <?php echo ucfirst($post['status']); ?>
+            </td>
+            <td><?= date('d/m/Y', strtotime($post['created_at'])) ?></td>
+            <td class="actions">
+              <a href="/post/editar?id=<?= $post['id'] ?>">Editar</a>
+              <a href="/post/deletar?id=<?= $post['id'] ?>">Excluir</a>
+            </td>
+          </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
-
-  </main>

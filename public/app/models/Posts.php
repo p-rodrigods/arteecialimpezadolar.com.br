@@ -220,7 +220,7 @@ class Posts extends Model
     }
 
     // Método para cadastrar um novo post
-    public function NovoPost()
+    public function novoPost()
     {
         $query = "INSERT INTO tb_posts(categoria_id, titulo, slug, resumo, conteudo, imagem, autor, status, created_at) VALUES (:categoria, :titulo, :slug, :resumo, :conteudo, :imagem, :autor, :status, NOW())";
         $stmt = $this->db->prepare($query);
@@ -238,8 +238,47 @@ class Posts extends Model
         return $this;
     }
 
+    // Método para atualizar um post existente
+    public function atualizarPost(){
+        $query = "UPDATE tb_posts SET 
+            categoria_id = :categoria, 
+            titulo = :titulo, 
+            slug = :slug, 
+            resumo = :resumo, 
+            conteudo = :conteudo, 
+            " . ($this->__get('caminho_imagem') ? "imagem = :imagem, " : "") . "
+            status = :status 
+            WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':categoria', $this->__get('categoria_id'));
+        $stmt->bindValue(':titulo', $this->__get('titulo'));
+        $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':resumo', $this->__get('resumo'));
+        $stmt->bindValue(':conteudo', $this->__get('conteudo'));
+        if ($this->__get('caminho_imagem')) {
+            $stmt->bindValue(':imagem', $this->__get('caminho_imagem'));
+        }
+        $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->bindValue(':id', $this->__get('id'));
+
+        $stmt->execute();
+
+        return $this;
+    }
+
+    // Método para deletar um post
+    public function deletarPost(){
+        $query = "DELETE FROM tb_posts WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+
+        $stmt->execute();
+
+        return $this;
+    }
+
     // Método para upload de imagem
-    public function UploadImagem($imagem)
+    public function uploadImagem($imagem)
     {
         // Lógica para upload de imagem
         if (isset($imagem) && $imagem['error'] === UPLOAD_ERR_OK) {
