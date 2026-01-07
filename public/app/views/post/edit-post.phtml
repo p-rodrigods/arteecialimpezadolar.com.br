@@ -6,9 +6,12 @@
   </div>
   <div class="form-floating mb-3">
     <select id="categoria" name="categoria" class="form-select">
-      <option value="<?=  $this->view->post['categoria_id'] ?>"> -- Selecione uma categoria --</option>
+      <option > -- Selecione uma categoria --</option>
       <?php foreach ($this->view->categorias as $categoria): ?>
-        <option value="<?= $categoria['id'] ?>"><?= $categoria['nome'] ?></option>
+         <option value="<?= $categoria['id'] ?>"
+        <?= (isset($this->view->post['categoria_id']) && (int)$this->view->post['categoria_id'] === (int)$categoria['id']) ? 'selected' : '' ?>>
+        <?= $categoria['nome'] ?>
+    </option>
       <?php endforeach; ?>
     </select>
     <label for="categoria">Categoria</label>
@@ -29,19 +32,38 @@
     <div class="col-md-4">
       <div class="form-floating mb-3">
         <select class="form-control" name="status" id="status">
-          <option value="rascunho">Rascunho</option>
-          <option value="publicado">Publicado</option>
+          <option value="rascunho" <?= ($this->view->post['status'] === 'rascunho') ? "selected": '' ?>>Rascunho</option>
+          <option value="publicado" <?= ($this->view->post['status'] === 'publicado') ? 'selected' : '' ?>>Publicado</option>
         </select>
         <label for="status">Status</label>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="input-group mb-3">
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <select class="form-control" name="destaque_principal" id="dPrincipal">
+          <option value="0" <?=  ($this->view->post['destaque_principal'] == 0 ) ? 'selected' : '' ?> >Não</option>
+          <option value="1"  <?=  ($this->view->post['destaque_principal'] == 1 ) ? 'selected' : '' ?> >Sim</option>
+        </select>
+        <label for="status">Destaque Principal</label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-floating mb-3">
+        <select class="form-control" name="destaque_categoria" id="dCategoria">
+          <option value="0"  <?=  ($this->view->post['destaque_categoria'] == 0 ) ? 'selected' : '' ?>>Não</option>
+          <option value="1"  <?=  ($this->view->post['destaque_categoria'] == 1 ) ? 'selected' : '' ?>>Sim</option>
+        </select>
+        <label for="status">Destaque da Categoria</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+         <div class="input-group mb-3">
          <label class="input-group-text" for="capa">Imagem de capa</label>
         <input class="form-control" type="file" id="capa" name="capa" accept="image/*" value="<?= $this->view->post['imagem'] ?>">
       </div>
     </div>
-
   </div>
 
   <div class="form-floating mb-3">

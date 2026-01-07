@@ -1,5 +1,8 @@
-/* CLASSES MOLDAIS*/
+html {
+    zoom: 0.9;
+}
 
+/* CLASSES MOLDAIS*/
 .showSuccessModal {
     display: none;
     position: fixed;

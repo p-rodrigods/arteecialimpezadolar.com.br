@@ -41,6 +41,8 @@ class PostController extends ActionDashboard
        $this->post->__set('titulo', $_POST['titulo']);
        $this->post->__set('slug', $_POST['slug']);
        $this->post->__set('status', $_POST['status']);
+       $this->post->__set('destaque_principal', $_POST['destaque_principal']);
+       $this->post->__set('destaque_categoria', $_POST['destaque_categoria']);
        $this->post->__set('resumo', $_POST['resumo']);
        $this->post->__set('conteudo', $_POST['conteudo']);
        $caminho =$this->post->UploadImagem($_FILES['imagem_capa']);
@@ -73,6 +75,8 @@ class PostController extends ActionDashboard
        $this->post->__set('titulo', $_POST['titulo']);
        $this->post->__set('slug', $_POST['slug']);
        $this->post->__set('status', $_POST['status']);
+       $this->post->__set('destaque_principal', $_POST['destaque_principal']);
+       $this->post->__set('destaque_categoria', $_POST['destaque_categoria']);
        $this->post->__set('resumo', $_POST['resumo']);
        $this->post->__set('conteudo', $_POST['conteudo']);
          if(!empty($_FILES['imagem_capa']['name'])){

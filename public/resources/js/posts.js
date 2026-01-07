@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
             titulo: document.getElementById('titulo').value.trim(),
             slug: document.getElementById('slug').value.trim(),
             status: document.getElementById('status').value,
+            destaque_principal: document.getElementById('dPrincipal').value,
+            destaque_categoria: document.getElementById('dCategoria').value,
             imagem_capa: document.getElementById('capa'),
             resumo: document.getElementById('resumo').value.trim(),
             conteudo: document.getElementById('conteudo').value.trim(),
@@ -82,6 +84,8 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('categorias', dados.categorias);
         formData.append('titulo', dados.titulo);
         formData.append('slug', dados.slug);
+        formData.append('destaque_principal', dados.destaque_principal);
+        formData.append('destaque_categoria', dados.destaque_categoria);
         formData.append('status', dados.status);
         formData.append('imagem_capa', dados.imagem_capa.files[0]);
         formData.append('resumo', dados.resumo);
@@ -96,8 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     showSuccessModal(mensagemSucesso);
                     if(page === '/post/criar'){
                         document.getElementById('form-criar-post').reset();
-                    }else
-                    {
                         setTimeout(() => {
                             window.location.href = '/post';
                         }, 2000);   

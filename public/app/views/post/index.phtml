@@ -25,21 +25,28 @@
       <thead>
         <tr>
           <th>Título</th>
+          <th>Categoria</th>
           <th>Status</th>
-          <th>Data</th>
-          <th>Ações</th>
+          <th>Destaque Principal</th>
+          <th>Destaque Categoria</th>
+          <th>Data de Criação</th>
+          <th>Data de Atualização</th>
+          <th colspan="">Ações</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($this->view->postsRecentes as $post): ?>
           <tr>
-            <td><?= htmlspecialchars($post['titulo']) ?></td>
+            <td> <a href="/post/editar?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['titulo']) ?></a></td>
+            <td> <?php echo ucfirst($post['categoria_nome']); ?></td>
             <td>
               <?php echo ucfirst($post['status']); ?>
             </td>
+            <td> <?php echo $post['destaque_principal']; ?></td>
+            <td> <?php echo $post['destaque_categoria']; ?></td>
             <td><?= date('d/m/Y', strtotime($post['created_at'])) ?></td>
-            <td class="actions">
-              <a href="/post/editar?id=<?= $post['id'] ?>">Editar</a>
+            <td><?= date('d/m/Y', strtotime($post['updated_at'])) ?></td>
+            <td>
               <a href="/post/deletar?id=<?= $post['id'] ?>">Excluir</a>
             </td>
           </tr>

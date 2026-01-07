@@ -15,6 +15,8 @@ class Posts extends Model
     private $imagem;
     private $autor;
     private $status;
+    private $destaque_principal;
+    private $destaque_categoria;
     private $data_criacao;
     private $busca;
     private $pagina;
@@ -57,8 +59,19 @@ class Posts extends Model
     // Método para obter titulo, status e data de criação de todos os posts
     public function listarPostsDashboard()
     {
-        $query = "SELECT id, titulo, status, created_at FROM tb_posts 
-        ORDER BY created_at DESC";
+        $query = "SELECT 
+    p.id,
+    p.titulo,
+    p.status,
+    p.created_at,
+    p.updated_at,
+    p.destaque_categoria,
+    p.destaque_principal,
+    COALESCE(c.nome, 'Sem categoria') AS categoria_nome
+FROM tb_posts p
+LEFT JOIN tb_categorias c 
+    ON p.categoria_id = c.id
+ORDER BY p.created_at DESC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
 
@@ -222,7 +235,7 @@ class Posts extends Model
     // Método para cadastrar um novo post
     public function novoPost()
     {
-        $query = "INSERT INTO tb_posts(categoria_id, titulo, slug, resumo, conteudo, imagem, autor, status, created_at) VALUES (:categoria, :titulo, :slug, :resumo, :conteudo, :imagem, :autor, :status, NOW())";
+        $query = "INSERT INTO tb_posts(categoria_id, titulo, slug, resumo, conteudo, imagem, autor, status, destaque_categoria, destaque_principal, created_at) VALUES (:categoria, :titulo, :slug, :resumo, :conteudo, :imagem, :autor, :status, :destaque_categoria, :destaque_principal, NOW())";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':categoria', $this->__get('categoria_id'));
         $stmt->bindValue(':titulo', $this->__get('titulo'));
@@ -232,6 +245,8 @@ class Posts extends Model
         $stmt->bindValue(':imagem', $this->__get('caminho_imagem'));
         $stmt->bindValue(':autor', $this->__get('autor'));
         $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->bindValue(':destaque_categoria', $this->__get('destaque_categoria'));
+        $stmt->bindValue(':destaque_principal', $this->__get('destaque_principal'));
 
         $stmt->execute();
 
@@ -247,7 +262,9 @@ class Posts extends Model
             resumo = :resumo, 
             conteudo = :conteudo, 
             " . ($this->__get('caminho_imagem') ? "imagem = :imagem, " : "") . "
-            status = :status 
+            status = :status,
+            destaque_categoria = :destaque_categoria,
+            destaque_principal = :destaque_principal
             WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':categoria', $this->__get('categoria_id'));
@@ -259,6 +276,8 @@ class Posts extends Model
             $stmt->bindValue(':imagem', $this->__get('caminho_imagem'));
         }
         $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->bindValue(':destaque_categoria', $this->__get('destaque_categoria'));
+        $stmt->bindValue(':destaque_principal', $this->__get('destaque_principal'));
         $stmt->bindValue(':id', $this->__get('id'));
 
         $stmt->execute();
