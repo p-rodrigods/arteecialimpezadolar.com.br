@@ -38,7 +38,7 @@
                     <?php foreach ($this->view->categorias as $categoria): ?>
                         <tr>
                             <td>
-                                <?php echo $categoria['nome']; ?>
+                                <a href="/categorias/editar?id=<?= $categoria['id'] ?>" class="text-decoration-none"><?php echo $categoria['nome']; ?></a>
                             </td>
                             <td>
                                  <?php echo $categoria['slug']; ?>
@@ -50,24 +50,8 @@
                                <?php  echo $categoria['status'] ? 'Ativo' : 'Inativo';?>
                             </td>
                             <td> <?php echo $categoria['total_posts'] ?></td>
-                            <td class="actions" >
-                                <button
-                                    class="btn-icon btn-edit"
-                                    data-id="3"
-                                    data-nome="Limpeza"
-                                    data-slug="limpeza"
-                                    data-status="ativo">
-                                    ✏️
-                                </button>
-                            </td>
                             <td class="actions">
-                                <button
-                                    class="btn-icon btn-delete"
-                                    data-id="3"
-                                    data-posts="12">
-                                    🗑️
-                                </button>
-
+                                <a href="/categorias/deletar?id=<?= $categoria['id'] ?>"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

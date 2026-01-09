@@ -1,0 +1,58 @@
+<div class="container-post">
+    <h2>Nova Categoria</h2>
+    <form id="form-editar-categoria" class="form-post">
+        <div class="form-group">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="<?= $this->view->categoria['nome'] ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="slug" class="form-label">Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" value="<?= $this->view->categoria['slug'] ?>">
+        </div>
+
+        <div class="form-check form-check-inline mt-2">
+            <input class="form-check-input" type="radio" name="status" id="status" value="1" <?php if($this->view->categoria['status'] == 1) echo 'checked'; ?>>
+            <label class="form-check-label" for="ativo" >
+                Ativo
+            </label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="status" value="0" <?php if($this->view->categoria['status'] == 0) echo 'checked'; ?>>
+            <label class="form-check-label" for="inativo">
+                Inativo
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="4"> <?= $this->view->categoria['descricao'] ?> </textarea>
+        </div>
+        <div class="mt-3">
+            <a href="/categorias" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+    </form>
+</div>
+<script>
+      // Função para gerar slug a partir do título
+ function gerarSlug(texto) {
+    return texto
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9 ]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+  }
+
+  const nomeInput = document.getElementById('nome');
+  const slugInput = document.getElementById('slug');
+  let slugEditado = false;
+
+  slugInput.addEventListener('input', () => slugEditado = true);
+
+  nomeInput.addEventListener('input', () => {
+    if (!slugEditado) {
+      slugInput.value = gerarSlug(nomeInput.value);
+    }
+  });
+</script>

@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-      
-
         const imagemCapa = dados.imagem_capa.files[0];
     
         if (imagemObrigatoria && !imagemCapa) {
@@ -52,9 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showErrorModal('Tipo de arquivo inválido para a imagem de capa. \n Use JPG, PNG ou GIF.');
                 return;
             }
-        }
-
-      
+        }  
 
         if (!dados.resumo || dados.resumo.length < 20) {
             showErrorModal('Insira um resumo válido com pelo menos 20 caracteres.');
@@ -137,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const formDelete = document.getElementById('form-deletar-post');
+    
     if (formDelete) {
         formDelete.addEventListener('submit', function (e) {
             e.preventDefault();

@@ -4,11 +4,12 @@ html, body{
     flex-direction: column;  
     overflow-x: hidden;
     scroll-behavior: smooth;
+    zoom: 0.9;
 }
 
 main{
-    flex: 1;
-    padding-top: 10%;
+    height: 100%;
+    flex: 1;                     /* faz o main ocupar o espaço disponível */
 }
 
 body {
@@ -24,7 +25,7 @@ nav.navbar-transparente, div.offcanvas-transparente {
 
 .offcanvas {
   z-index: 2000 !important;
-  width: 250px !important;
+  width: 300px !important;
 }
 
 .offcanvas .nav-link:hover{
@@ -51,9 +52,6 @@ nav.navbar-transparente, div.offcanvas-transparente {
     color: gold
 }
 
-.caixa {
-    padding: 20px 0;
-}
 
 .post-container{
     max-width: 700px;

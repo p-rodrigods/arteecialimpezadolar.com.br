@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-5">
+            <div class="card-body">
+                <form id="form-deletar-categoria">
+                    <h2 class="mb-3">Excluir Categoria</h2>
+                    <p>Tem certeza que deseja excluir a categoria "<strong><?= htmlspecialchars($this->view->categoria['nome']) ?></strong>"?</p>
+                    <input type="hidden" name="id" id="id" value="<?= $this->view->categoria['id'] ?>">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="/categorias" class="btn btn-secondary me-3">Cancelar</a>
+                        <button type="submit" name="acao" value="deletar" class="btn btn-danger">Excluir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

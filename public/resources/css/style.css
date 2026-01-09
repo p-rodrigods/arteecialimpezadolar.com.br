@@ -4,11 +4,13 @@ html, body{
     flex-direction: column;  
     overflow-x: hidden;
     scroll-behavior: smooth;
+    zoom: 0.9;
 }
 
 main{
     flex: 1;
 }
+
 
 body {
     background: url(../img/site/capa\(2\).jpg);
@@ -61,8 +63,8 @@ nav.navbar-transparente {
 }
 
 #home{  
-    height:  100vh; 
-    padding-top: 25%;
+    height:  120vh; 
+    padding-top: 20%;
 }
 
 

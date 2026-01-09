@@ -41,24 +41,47 @@ class Categorias extends Model
         return $stmt->execute();
     }
 
+    public function listarCategoriasDasboard()
+    {
+
+        $query = "SELECT 
+        c.id,
+        c.nome,
+        c.slug,
+        c.descricao,
+        c.status,
+        COUNT(p.id) AS total_posts
+        FROM tb_categorias c
+        LEFT JOIN tb_posts p 
+            ON p.categoria_id = c.id
+        GROUP BY 
+            c.id, c.nome, c.slug, c.descricao, c.status
+        ORDER BY c.nome ASC;";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function listarCategorias()
     {
 
         $query = "SELECT 
-    c.id,
-    c.nome,
-    c.slug,
-    c.descricao,
-    c.status,
-    COUNT(p.id) AS total_posts
-FROM tb_categorias c
-LEFT JOIN tb_posts p 
-    ON p.categoria_id = c.id
-GROUP BY 
-    c.id, c.nome, c.slug, c.descricao, c.status
-ORDER BY c.nome ASC;";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
+        c.id,
+        c.nome,
+        c.slug,
+        c.descricao,
+        c.status,
+        COUNT(p.id) AS total_posts
+        FROM tb_categorias c
+        LEFT JOIN tb_posts p 
+            ON p.categoria_id = c.id
+        WHERE c.status = 1
+        GROUP BY 
+            c.id, c.nome, c.slug, c.descricao, c.status
+        ORDER BY c.nome ASC;";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -129,5 +152,24 @@ ORDER BY c.nome ASC;";
             'limite' => $limite,
             'paginas' => ($total > 0) ? ceil($total / $limite) : 0
         ];
+    }
+
+    public function getCategoriaById()
+    {
+        $query = "SELECT * FROM tb_categorias WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function delete()
+    {
+        $query = "DELETE FROM tb_categorias WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+
+        return $stmt->execute();
     }
 }

@@ -51,7 +51,6 @@ class Route extends Bootstrap
         // Adiciona rota para gerenciar posts
         $routes->add('dashboard', '/post', 'admin', 'PostController','index');
                 
-
         // Page para criar novo post
         $routes->add('manage-posts', '/post/novo-post', 'admin', 'PostController','novoPost');
 
@@ -72,7 +71,6 @@ class Route extends Bootstrap
 
 
 
-
         // Adiciona rota para categorias
         $routes->add('manage-categories', '/categorias', 'admin', 'CategoriasController','index');
 
@@ -81,6 +79,21 @@ class Route extends Bootstrap
 
         // Salvar Categoria
         $routes->add('save-category', '/categorias/salvar', 'admin', 'CategoriasController','create');
+
+        // Editar Categoria
+        $routes->add('edit-category', '/categorias/editar', 'admin', 'CategoriasController','editarCategoria');
+
+        // Atualizar Categoria
+        $routes->add('update-category', '/categorias/atualizar', 'admin', 'CategoriasController','update');
+
+        // Deletar Categoria
+        $routes->add('delete-category', '/categorias/deletar', 'admin', 'CategoriasController','deleteCategoria');
+
+        // Excluir Categoria
+        $routes->add('exclude-category', '/categorias/excluir', 'admin', 'CategoriasController','delete');
+
+
+
 
         // Adiciona rota notFound
         $routes->add('notFound', '/notFound', '', 'NotFoundController','notFound');

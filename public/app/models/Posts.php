@@ -60,20 +60,20 @@ class Posts extends Model
     public function listarPostsDashboard()
     {
         $query = "SELECT 
-    p.id,
-    p.titulo,
-    p.status,
-    p.created_at,
-    p.updated_at,
-    p.destaque_categoria,
-    p.destaque_principal,
-    COALESCE(c.nome, 'Sem categoria') AS categoria_nome
-FROM tb_posts p
-LEFT JOIN tb_categorias c 
-    ON p.categoria_id = c.id
-ORDER BY p.created_at DESC";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
+        p.id,
+        p.titulo,
+        p.status,
+        p.created_at,
+        p.updated_at,
+        p.destaque_categoria,
+        p.destaque_principal,
+        COALESCE(c.nome, 'Sem categoria') AS categoria_nome
+        FROM tb_posts p
+        LEFT JOIN tb_categorias c 
+            ON p.categoria_id = c.id
+        ORDER BY p.created_at DESC";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -126,10 +126,11 @@ ORDER BY p.created_at DESC";
                     p.autor,
                     p.created_at,
                     p.destaque_principal,
-                    c.nome AS categoria
+                    c.nome AS categoria,
+                    c.status AS status
                   FROM tb_posts AS p
                   INNER JOIN tb_categorias AS c ON p.categoria_id = c.id
-                  WHERE p.status = 'publicado' AND p.destaque_principal = 0
+                  WHERE p.status = 'publicado' AND p.destaque_principal = 0 AND c.status = 1
                   ORDER BY p.created_at DESC
                   LIMIT :limite OFFSET :offset";
         $stmt = $this->db->prepare($query);
@@ -176,6 +177,7 @@ ORDER BY p.created_at DESC";
                 p.conteudo,
                 p.created_at,
                 c.nome AS categoria,
+                c.status AS status,
                 (
                     (CASE WHEN p.titulo LIKE :busca THEN 3 ELSE 0 END) +
                     (CASE WHEN p.resumo LIKE :busca THEN 2 ELSE 0 END) +
@@ -183,7 +185,7 @@ ORDER BY p.created_at DESC";
                 ) AS relevancia
             FROM tb_posts AS p
             INNER JOIN tb_categorias AS c ON p.categoria_id = c.id
-            WHERE p.status = 'publicado'
+            WHERE p.status = 'publicado' AND c.status = 1
             AND (p.titulo LIKE :busca OR p.conteudo LIKE :busca OR p.resumo LIKE :busca)
             ORDER BY relevancia DESC, p.created_at DESC
             LIMIT :limite OFFSET :offset
