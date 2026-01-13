@@ -33,7 +33,7 @@ class CategoriasController extends ActionDashboard
         $this->categoria->__set('status', $_POST['status']);
         $this->categoria->__set('descricao', $_POST['descricao']);
 
-        if ($this->categoria->NovaCategoria()) {
+        if ($this->categoria->novaCategoria()) {
             echo "sucesso";
         } 
     }
@@ -47,14 +47,14 @@ class CategoriasController extends ActionDashboard
     }
 
     public function update(){
-        
+
         $this->categoria->__set('id', $_POST['id']);
         $this->categoria->__set('nome', $_POST['nome']);
         $this->categoria->__set('slug', $_POST['slug']);
         $this->categoria->__set('status', $_POST['status']);
         $this->categoria->__set('descricao', $_POST['descricao']);
 
-        if($this->categoria->update()){
+        if($this->categoria->atualizarCategoria()){
             echo "sucesso";
         } else {
             echo "erro";
@@ -74,7 +74,7 @@ class CategoriasController extends ActionDashboard
 
         $this->categoria->__set('id', $dados['id']);
 
-        if($this->categoria->delete()){
+        if($this->categoria->deleteCategoria()){
             echo "sucesso";
         } else {
             echo "erro";

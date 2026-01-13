@@ -27,20 +27,6 @@ class Categorias extends Model
     }
 
     // Métodos para interagir com o banco de dados
-
-    public function NovaCategoria()
-    {
-        $query = "INSERT INTO tb_categorias (nome, slug, descricao, status, created_at) 
-                  VALUES (:nome, :slug, :descricao, :status, NOW())";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':nome', $this->__get('nome'));
-        $stmt->bindValue(':slug', $this->__get('slug'));
-        $stmt->bindValue(':descricao', $this->__get('descricao'));
-        $stmt->bindValue(':status', $this->__get('status'));
-
-        return $stmt->execute();
-    }
-
     public function listarCategoriasDasboard()
     {
 
@@ -164,12 +150,43 @@ class Categorias extends Model
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function delete()
+    public function novaCategoria()
+    {
+        $query = "INSERT INTO tb_categorias (nome, slug, descricao, status, created_at) 
+                  VALUES (:nome, :slug, :descricao, :status, NOW())";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':descricao', $this->__get('descricao'));
+        $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->execute();
+
+        return $this;
+    }
+
+
+    public function deleteCategoria()
     {
         $query = "DELETE FROM tb_categorias WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
+
+        return $this; 
+    }
+
+    public function atualizarCategoria(){
+
+        $query = "UPDATE tb_categorias SET nome = :nome, slug = :slug, status = :status ,descricao = :descricao WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':slug', $this->__get('slug'));
+        $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->bindValue(':descricao', $this->__get('descricao'));
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
 
         return $stmt->execute();
     }
+
 }

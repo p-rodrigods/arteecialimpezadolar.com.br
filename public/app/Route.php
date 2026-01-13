@@ -78,7 +78,7 @@ class Route extends Bootstrap
         $routes->add('create-category', '/categorias/nova-categoria', 'admin', 'CategoriasController','novaCategoria');
 
         // Salvar Categoria
-        $routes->add('save-category', '/categorias/salvar', 'admin', 'CategoriasController','create');
+        $routes->add('save-category', '/categorias/criar', 'admin', 'CategoriasController','create');
 
         // Editar Categoria
         $routes->add('edit-category', '/categorias/editar', 'admin', 'CategoriasController','editarCategoria');
