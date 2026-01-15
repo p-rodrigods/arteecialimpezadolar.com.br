@@ -1,19 +1,15 @@
 
-<div class="post-container ">
-    <h1 class="post-title" style="font-size:2.2em;margin-bottom:16px;"><?= $this->view->postSelecionado['titulo']?></h1>
+<div class="post-container">
+    <h1 class="fw-bold display-4"><?= $this->view->postSelecionado['titulo']?></h1>
     <div class="post-meta" style="color:#888;font-size:0.95em;margin-bottom:24px;">
         <span>Por <?= $this->view->postSelecionado['autor'] ?></span> &bull; 
         <span>Publicado em <?= date("d/m/Y • H\hi", strtotime($this->view->postSelecionado['created_at'])) ?></span>
     </div>
-    <div class="post-image text-center" style="margin-bottom:24px;">
+    <div class="post-image text-center mb-5">
         <img src="/public/<?= $this->view->postSelecionado['imagem'] ?>" alt="Descrição da imagem" style="width:100%;border-radius:6px;">
     </div>
-    <div class="post-content" style="font-size:1.15em;line-height:1.7;color:#222;">
-        <p>
-           <?= $this->view->postSelecionado['resumo'] ?>
-        </p>
-        <p>
-           <?= $this->view->postSelecionado['conteudo'] ?>
-        </p>
+    <div class="post-content fs-4">
+        <p class=""><em><?= $this->view->postSelecionado['resumo'] ?></em></p>
+        <p class=""><?= $this->view->postSelecionado['conteudo'] ?></p>
     </div>
-</div>
+</div>  
