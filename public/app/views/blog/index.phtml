@@ -27,7 +27,7 @@
                 <a href="\blog?post=<?= $this->view->destaque['slug'] ?>" class="display-5 link-primary fw-bolder text-decoration-none"><?= $this->view->destaque['titulo'] ?></a>
               </p>
               <p class="mb-3 text-muted">
-                <?= $this->view->destaque['resumo'] ?>
+                <?= $texto = $this->view->destaque['resumo']; ?>
               </p>
             </div>
             <div class="col-md-5">
@@ -51,7 +51,20 @@
                       <?= $posts['titulo'] ?>
                     </a>
                   </p>
-                <p><?= $posts['resumo'] ?></p>
+                <p>
+                  <?php 
+                  $texto =  $posts['resumo']; 
+                  $quantidade = mb_strlen($texto, 'UTF-8');
+                  $limite = 180;
+                  $resumo = mb_substr($texto, 0, $limite, 'UTF-8');
+
+                  if($quantidade > $limite){
+                    $resumo .= '...';
+                  }
+
+                  echo $resumo;
+                  ?>
+                </p>
                 <p>
                   <span class="badge bg-success me-2"><?= $posts['categoria'] ?></span>
                   <span class="text-muted small"><?= date("d/m/Y • H\hi", strtotime($posts['created_at'])) ?></span>

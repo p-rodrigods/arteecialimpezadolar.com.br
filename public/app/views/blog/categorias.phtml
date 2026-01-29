@@ -53,7 +53,20 @@
                   <?= $posts['titulo'] ?>
                 </a>
               </p>
-              <p><?= $posts['resumo'] ?></p>
+              <p> 
+                <?php 
+                  $texto =  $posts['resumo']; 
+                  $quantidade = mb_strlen($texto, 'UTF-8');
+                  $limite = 180;
+                  $resumo = mb_substr($texto, 0, $limite, 'UTF-8');
+
+                  if($quantidade > $limite){
+                    $resumo .= '...';
+                  }
+
+                  echo $resumo;
+                  ?>
+              </p>
               <p>
                 <span class="badge bg-warning me-2"><?= $posts['categoria_nome'] ?></span>
                 <span class="text-muted small"><?= date("d/m/Y • H\hi", strtotime($posts['created_at'])) ?></span>
