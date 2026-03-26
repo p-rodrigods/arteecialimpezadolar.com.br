@@ -1,0 +1,411 @@
+<section class="hero">
+  <!-- ESQUERDA: Mensagem principal -->
+  <div class="hero-left">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Agendamento disponível hoje
+    </div>
+ 
+    <h1 class="hero-title">
+      Casa limpa,
+      <span class="destaque">vida mais leve</span>
+    </h1>
+ 
+    <p class="hero-sub">
+      Profissionais verificados, agenda flexível e limpeza que faz diferença de verdade. Agende em menos de 2 minutos, sem complicação.
+    </p>
+ 
+    <div class="hero-btns">
+      <a href="#agendar" class="btn-main">Agendar limpeza →</a>
+      <a href="#como-funciona" class="btn-outline">Como funciona</a>
+    </div>
+ 
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">+5.000</div>
+        <div class="stat-label">Casas<br>atendidas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9 ★</div>
+        <div class="stat-label">Avaliação<br>média</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Profissionais<br>verificados</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- DIREITA: Mini formulário de cotação -->
+  <div class="hero-right" id="agendar">
+    <div class="form-card">
+      <span class="form-card-label">Solicitar orçamento</span>
+ 
+      <!-- Tipo de serviço -->
+      <div class="servicos-mini" id="chips">
+        <div class="servico-chip ativo" data-tipo="Padrão" onclick="selecionarChip(this)">
+          <div class="chip-icon">🧹</div>
+          <div class="chip-label">Limpeza<br>Padrão</div>
+        </div>
+        <div class="servico-chip" data-tipo="Profunda" onclick="selecionarChip(this)">
+          <div class="chip-icon">✨</div>
+          <div class="chip-label">Limpeza<br>Profunda</div>
+        </div>
+        <div class="servico-chip" data-tipo="Pós-obra" onclick="selecionarChip(this)">
+          <div class="chip-icon">🏗️</div>
+          <div class="chip-label">Pós-obra /<br>Mudança</div>
+        </div>
+      </div>
+ 
+      <!-- Campos do formulário -->
+      <div class="form-group" style="margin-top: 18px;">
+        <select class="form-select" id="tamanho">
+          <option value="" disabled selected>Tamanho do imóvel</option>
+          <option>Kitnet / Studio (até 35m²)</option>
+          <option>Apartamento pequeno (até 60m²)</option>
+          <option>Apartamento médio (até 90m²)</option>
+          <option>Apartamento grande (até 130m²)</option>
+          <option>Casa (acima de 130m²)</option>
+        </select>
+      </div>
+ 
+      <div class="form-row">
+        <input type="date" class="form-input" id="data" placeholder="Data">
+        <select class="form-select" id="horario">
+          <option value="" disabled selected>Horário</option>
+          <option>08:00</option>
+          <option>09:00</option>
+          <option>10:00</option>
+          <option>13:00</option>
+          <option>14:00</option>
+          <option>15:00</option>
+          <option>16:00</option>
+        </select>
+      </div>
+ 
+      <input type="text" class="form-input" placeholder="Seu nome" style="margin-bottom: 10px;">
+      <input type="tel" class="form-input" placeholder="WhatsApp" style="margin-bottom: 0;">
+ 
+      <button class="btn-cotar" onclick="cotar()">
+        Ver preço e confirmar →
+      </button>
+ 
+      <div class="form-trust">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Seus dados estão seguros. Sem spam.
+      </div>
+    </div>
+  </div>
+ 
+</section>
+ 
+<!-- ══ FAIXA GARANTIAS ══ -->
+<div class="garantias">
+  <div class="garantia-item">
+    <div class="garantia-check">
+      <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 5l2.5 2.5L8 3" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Sem taxa de cancelamento
+  </div>
+  <div class="garantia-item">
+    <div class="garantia-check">
+      <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 5l2.5 2.5L8 3" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Profissionais segurados
+  </div>
+  <div class="garantia-item">
+    <div class="garantia-check">
+      <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 5l2.5 2.5L8 3" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Satisfação garantida
+  </div>
+  <div class="garantia-item">
+    <div class="garantia-check">
+      <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 5l2.5 2.5L8 3" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    Agendamento em 2 minutos
+  </div>
+</div>
+
+<section class="como-funciona">
+
+  <!-- Cabeçalho -->
+  <div class="secao-header">
+    <div class="secao-badge">Simples assim</div>
+    <h2 class="secao-titulo">Como funciona a<br><span>Arte & CIA</span></h2>
+    <p class="secao-sub">Agendar uma limpeza profissional nunca foi tão fácil. Em poucos minutos sua casa está nos cuidados de quem entende do assunto.</p>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps-wrap" id="steps">
+
+    <div class="step">
+      <div class="step-icone-wrap">
+        <div class="step-icone">📱</div>
+        <div class="step-numero">1</div>
+      </div>
+      <h3 class="step-nome">Escolha e agende</h3>
+      <p class="step-desc">Selecione o tipo de limpeza, o tamanho do imóvel e o melhor horário para você — tudo pelo site ou WhatsApp.</p>
+      <span class="step-tempo">⏱ Menos de 2 minutos</span>
+    </div>
+
+    <div class="step">
+      <div class="step-icone-wrap">
+        <div class="step-icone">🧹</div>
+        <div class="step-numero">2</div>
+      </div>
+      <h3 class="step-nome">Profissional vai até você</h3>
+      <p class="step-desc">Um profissional verificado e treinado chega no horário combinado com todos os materiais e produtos necessários.</p>
+      <span class="step-tempo">⏱ Pontualidade garantida</span>
+    </div>
+
+    <div class="step">
+      <div class="step-icone-wrap">
+        <div class="step-icone">✨</div>
+        <div class="step-numero">3</div>
+      </div>
+      <h3 class="step-nome">Casa limpa, você aprova</h3>
+      <p class="step-desc">Ao final você confere tudo. Se algo não ficou perfeito, retornamos sem custo. Sua satisfação é nossa garantia.</p>
+      <span class="step-tempo">⏱ Satisfação 100% garantida</span>
+    </div>
+
+  </div>
+
+  <!-- Bloco de detalhe -->
+  <div class="detalhe-wrap">
+    <div class="detalhe-texto">
+      <h3>Tudo incluso,<br><em>sem surpresas</em></h3>
+      <p>Você não precisa ter nada em casa. Nossos profissionais chegam equipados e prontos.</p>
+    </div>
+
+    <div class="detalhe-divider"></div>
+
+    <ul class="detalhe-lista">
+      <li>
+        <div class="check-mini">
+          <svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Produtos e equipamentos inclusos
+      </li>
+      <li>
+        <div class="check-mini">
+          <svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Você não precisa estar em casa
+      </li>
+      <li>
+        <div class="check-mini">
+          <svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Pagamento só após o serviço
+      </li>
+      <li>
+        <div class="check-mini">
+          <svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2L7.5 2" stroke="#FFD600" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Cancelamento gratuito com 24h de antecedência
+      </li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="secao-cta">
+    <a href="#agendar" class="btn-agendar">Quero agendar minha limpeza →</a>
+    <p>Primeira limpeza? Fale com a gente pelo WhatsApp 😊</p>
+  </div>
+
+</section>
+
+<section class="servicos">
+
+  <!-- Cabeçalho -->
+  <div class="secao-header">
+    <div class="secao-badge">Nossos serviços</div>
+    <h2 class="secao-titulo-servico">Escolha o que sua<br>casa <span>precisa agora</span></h2>
+    <p class="secao-sub">Preços estimados para apartamentos de até 60m². Selecione o tamanho do seu imóvel para ver os valores exatos.</p>
+  </div>
+
+  <!-- Filtro de tamanho -->
+  <div class="filtro-wrap" id="filtros">
+    <button class="filtro-btn ativo" data-m="60" onclick="filtrar(this)">Até 60m²</button>
+    <button class="filtro-btn" data-m="90" onclick="filtrar(this)">Até 90m²</button>
+    <button class="filtro-btn" data-m="130" onclick="filtrar(this)">Até 130m²</button>
+    <button class="filtro-btn" data-m="999" onclick="filtrar(this)">Casa grande (+130m²)</button>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards-grid" id="cards">
+
+    <!-- Limpeza Padrão -->
+    <div class="card">
+      <span class="card-icone">🧹</span>
+      <h3 class="card-nome">Limpeza Padrão</h3>
+      <p class="card-desc">Manutenção regular para manter a casa sempre em ordem. Ideal para quem já tem o costume de limpeza frequente.</p>
+      <div class="card-preco-wrap">
+        <span class="card-preco-label">A partir de</span>
+        <div class="card-preco" id="preco-padrao"><sup>R$</sup>149</div>
+        <div class="card-preco-obs">por visita · 3–4 horas</div>
+      </div>
+      <ul class="card-itens">
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Varrer e passar pano em todos os cômodos
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de banheiros e cozinha
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Organização geral dos ambientes
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de superfícies e móveis
+        </li>
+      </ul>
+      <button class="card-btn" onclick="agendar('Limpeza Padrão')">Agendar →</button>
+    </div>
+
+    <!-- Limpeza Profunda — DESTAQUE -->
+    <div class="card destaque">
+      <div class="card-popular">Mais popular</div>
+      <span class="card-icone">✨</span>
+      <h3 class="card-nome">Limpeza Profunda</h3>
+      <p class="card-desc">Limpeza completa e detalhada, perfeita para quem quer renovar a casa ou como primeira limpeza com a Arte & CIA.</p>
+      <div class="card-preco-wrap">
+        <span class="card-preco-label">A partir de</span>
+        <div class="card-preco" id="preco-profunda"><sup>R$</sup>249</div>
+        <div class="card-preco-obs">por visita · 5–7 horas</div>
+      </div>
+      <ul class="card-itens">
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#1a3a5c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Tudo da limpeza padrão
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#1a3a5c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Dentro de armários e gavetas
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#1a3a5c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de janelas e vidros
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#1a3a5c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Forno, geladeira e eletrodomésticos
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#1a3a5c" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de rodapés e cantos
+        </li>
+      </ul>
+      <button class="card-btn" onclick="agendar('Limpeza Profunda')">Agendar →</button>
+    </div>
+
+    <!-- Pós-obra -->
+    <div class="card">
+      <span class="card-icone">🏗️</span>
+      <h3 class="card-nome">Pós-obra / Mudança</h3>
+      <p class="card-desc">Para imóveis recém-reformados, entregues pela construtora ou quando você está de mudança e precisa de um novo começo.</p>
+      <div class="card-preco-wrap">
+        <span class="card-preco-label">A partir de</span>
+        <div class="card-preco" id="preco-obra"><sup>R$</sup>349</div>
+        <div class="card-preco-obs">por visita · 6–9 horas</div>
+      </div>
+      <ul class="card-itens">
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Remoção de resíduos de obra
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de azulejos e pisos
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Remoção de tinta e cimento
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza completa de toda a área
+        </li>
+      </ul>
+      <button class="card-btn" onclick="agendar('Pós-obra / Mudança')">Agendar →</button>
+    </div>
+
+    <!-- Escritório / Comercial -->
+    <div class="card">
+      <span class="card-icone">🏢</span>
+      <h3 class="card-nome">Escritório / Comercial</h3>
+      <p class="card-desc">Limpeza profissional para ambientes de trabalho, consultórios, lojas e pequenos comércios.</p>
+      <div class="card-preco-wrap">
+        <span class="card-preco-label">A partir de</span>
+        <div class="card-preco" id="preco-comercial"><sup>R$</sup>199</div>
+        <div class="card-preco-obs">por visita · sob consulta</div>
+      </div>
+      <ul class="card-itens">
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de salas e recepção
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Banheiros e copa/cozinha
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Limpeza de vidros e divisórias
+        </li>
+        <li>
+          <div class="item-check"><svg viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-3" stroke="#FFD600" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          Orçamento personalizado disponível
+        </li>
+      </ul>
+      <button class="card-btn" onclick="agendar('Escritório / Comercial')">Agendar →</button>
+    </div>
+
+  </div>
+
+  <!-- Nota -->
+  <p class="nota">
+    <strong>Preços estimados.</strong> O valor final pode variar de acordo com o estado de conservação do imóvel e necessidades específicas. Todos os serviços incluem produtos e materiais de limpeza.
+  </p>
+
+  <!-- Faixa de recorrência -->
+  <div class="recorrencia">
+    <div class="recorrencia-texto">
+      <h3>Limpe com frequência e <em>economize até 25%</em></h3>
+      <p>Clientes com plano recorrente têm prioridade de agendamento, o mesmo profissional em todas as visitas e desconto progressivo. Quanto mais frequente, maior o desconto.</p>
+    </div>
+    <div class="recorrencia-opcoes" id="opcoes">
+      <div class="opcao-chip" onclick="selecionarOpcao(this)">
+        <span class="opcao-freq">Semanal</span>
+        <span class="opcao-desc">4×/mês</span>
+        <span class="opcao-desconto">-25%</span>
+      </div>
+      <div class="opcao-chip ativo" onclick="selecionarOpcao(this)">
+        <span class="opcao-freq">Quinzenal</span>
+        <span class="opcao-desc">2×/mês</span>
+        <span class="opcao-desconto">-15%</span>
+      </div>
+      <div class="opcao-chip" onclick="selecionarOpcao(this)">
+        <span class="opcao-freq">Mensal</span>
+        <span class="opcao-desc">1×/mês</span>
+        <span class="opcao-desconto">-10%</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
